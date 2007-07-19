@@ -1,0 +1,288 @@
+<?xml version="1.0" ?>
+<project name="AxisProject" default="build">
+    <description>AxisProject NANT build script</description>
+
+    <!-- make system environment variables available as NAnt properties -->
+    <sysinfo/>
+
+    <property name="project.name" value="${project::get-name()}" />
+    <property name="current.dir" value="${directory::get-current-directory()}" />
+    <property name="config" value="Release" />
+    <property name="doxygen.cfg" value="Doxygen" />
+	
+	<if test="${not property::exists('CCNetWorkingDirectory')}">
+        <echo>Running from Command Line</echo>
+		<property name="workspace.dir" value="${sys.env.WORKSPACE}" />
+	</if>	
+
+	<if test="${property::exists('CCNetWorkingDirectory')}">
+        <echo>Running from CCNet</echo>
+        <echo>CCNetLabel: ${CCNetLabel}</echo> 
+		<property name="workspace.dir" value="${CCNetWorkingDirectory}" />
+	</if>
+	
+    <property name="trunk.dir" value="${path::get-directory-name(workspace.dir)}" />
+	
+    <target name="init">
+        <echo>Current   Directory: ${current.dir}</echo>
+        <echo>Workspace Directory: ${workspace.dir}</echo>
+        <echo>Trunk     Directory: ${trunk.dir}</echo>
+    </target>
+
+    <target name="clean" depends="init" description="Clean temp files/folders">
+        <delete includeemptydirs="true">
+            <fileset basedir="${current.dir}">
+                <include name="**/*.suo" />
+                <include name="**/*.log" />
+                <include name="**/*.bak" />
+                <include name="**/*.ncb" />
+                <include name="**/*.user" />
+                <include name="**/*.vcw" />
+                <include name="**/*.vcp" />
+                <include name="**/*.aps" />
+
+                <include name="**/bin/**" />
+                <include name="**/obj/**" />
+                
+				<include name="**/*Pocket PC*/**" />
+				
+                <include name="**/Debug/**" />
+                <include name="**/Release/**" />
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="build-one-sln" description="Build one VS solution using specified configuration">
+        <echo>Solution      : ${sln-file}   </echo>
+        <echo>Configuration : ${config}     </echo>
+        <readregistry property="__ide.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\InstallDir" hive="LocalMachine" />
+        <exec program="${__ide.dir}\devenv.exe">
+            <arg line="/build" />
+            <arg line="${config}" />
+            <arg line="&quot;${sln-file}&quot;" />
+            <arg line="/out &quot;${current.dir}/${config}-build.log&quot;" />
+        </exec>
+    </target>
+
+    <target name="build" depends="init" description="Build all VS solutions under current folder using specified configuration">
+        <foreach item="File" property="sln-file">
+            <in>
+                <items>
+                    <include name="${current.dir}/**/*.sln" />
+                </items>
+            </in>
+            <do>
+                <call target="build-one-sln" unless="${string::contains(sln-file, '( Unused )') or string::contains(sln-file, '\util\')}" />
+            </do>
+        </foreach>
+    </target>
+
+    <target name="rebuild" depends="clean, build" description="Rebuild using specified configuration">
+    </target>
+
+    <target name="test" depends="init" description="Run test cases using specified configuration">
+        <foreach item="File" property="testname">
+            <in>
+                <items>
+                    <include name="${current.dir}/**/${config}/*Test.exe" />
+                </items>
+            </in>
+            <do>
+                <property name="workingdir"
+                          value="${path::get-directory-name(testname)}" />
+                <echo>Running test  : ${testname} </echo>
+                <exec program="${testname}" workingdir="${workingdir}" />
+            </do>
+        </foreach>
+    </target>
+
+    <target name="cleanup" depends="init"
+        description="Do cleanup">
+        <exec program="TortoiseProc.exe" failonerror="false">
+            <arg line="/command:cleanup" />
+            <arg line="/path:${current.dir}" />
+            <arg line="/notempfile" />
+            <arg line="/closeonend:1" />
+        </exec>
+    </target>
+
+    <target name="repostatus" depends="clean"
+        description="Do clean, then repostatus">
+        <exec program="TortoiseProc.exe" failonerror="false">
+            <arg line="/command:repostatus" />
+            <arg line="/path:${current.dir}" />
+            <arg line="/notempfile" />
+            <arg line="/closeonend" />
+        </exec>
+    </target>
+
+    <target name="commit" depends="clean"
+        description="Commit to SVN">
+        <exec program="TortoiseProc.exe" failonerror="false">
+            <arg line="/command:commit" />
+            <arg line="/path:${current.dir}" />
+            <arg line="/notempfile" />
+            <arg line="/closeonend" />
+        </exec>
+    </target>
+
+    <target name="update" depends=""
+        description="Update latest changes from SVN">
+        <exec program="TortoiseProc.exe" failonerror="false">
+            <arg line="/command:update" />
+            <arg line="/path:${current.dir}" />
+            <arg line="/notempfile" />
+            <arg line="/closeonend" />
+        </exec>
+    </target>
+
+    <target name="revert" depends=""
+        description="Revert local changes">
+        <exec program="TortoiseProc.exe" failonerror="false">
+            <arg line="/command:revert" />
+            <arg line="/path:${current.dir}" />
+            <arg line="/notempfile" />
+            <arg line="/closeonend" />
+        </exec>
+    </target>
+
+    <target name="cruise" depends="clean"
+        description="Used by CruiseControl server">
+        <exec program="svn.exe" workingdir="${trunk.dir}">
+            <arg line="cleanup" />
+        </exec>
+
+        <exec program="svn.exe" workingdir="${trunk.dir}">
+            <arg line="update" />
+            <arg line="--non-interactive" />
+        </exec>
+		
+        <call target="build" />
+		
+        <call target="doxygen" />
+		
+        <call target="clean-build" />
+    </target>
+		
+    <target name="clean-build">
+        <foreach item="Folder" in="${workspace.dir}/build/" property="foldername">
+            <do>
+				<if test="${int::parse(CCNetLabel) - int::parse(path::get-file-name(foldername)) >= 10}">
+					<delete dir="${foldername}" failonerror="false" />
+				</if>
+            </do>
+        </foreach>
+    </target>
+    
+    <target name="log"
+        description="Used by CruiseControl server">
+        <exec program="${current.dir}\util\cruisecontrol\ProcessLog.exe">
+            <arg line="${current.dir}/Release-build.log" />
+            <arg line="${current.dir}/Release-build.xml" />
+        </exec>
+    </target>
+
+    <target name="backup" depends="init">
+        <tstamp verbose="true">
+            <formatter property="TODAY" pattern="dd MMM yyyy" />
+            <formatter property="DSTAMP" pattern="yyyyMMdd" />
+            <formatter property="TSTAMP" pattern="HHmm" />
+        </tstamp>
+        <property name="zip.file"
+                  value="${current.dir}-${DSTAMP}--${TSTAMP}.zip" />
+        <echo>Backup file: ${zip.file}</echo>
+        <zip zipfile="${zip.file}">
+            <fileset basedir="${current.dir}">
+                <include name="**/*.*" />
+                <exclude name="**/*.ncb" />
+                <exclude name="**/*.suo" />
+                <exclude name="**/*.plg" />
+                <exclude name="**/*.log" />
+                <exclude name="**/*.msi" />
+                <exclude name="**/*.zip" />
+                <exclude name="**/*.bak" />
+                <exclude name="**/Debug/**" />
+                <exclude name="**/Release/**" />
+                <exclude name="**/GeneratedFiles/**" />
+                <exclude name="**/results/**" />
+                <exclude name="**/_svn/**" />
+                <exclude name="**/.svn/**" />
+                <exclude name="**/Doc/**" />
+                <exclude name="**/doxygen/html/**" />
+                <exclude name="**/Deleted/**" />
+                <exclude name="**/*Log.dat" />
+                <exclude name="**/CxxTestRunner.cpp" />
+            </fileset>
+        </zip>
+		<if test="${property::exists('sys.env.AXIS_BACKUP_DIR')}">
+			<copy file="${zip.file}" todir="${sys.env.AXIS_BACKUP_DIR}" />
+		</if>
+    </target>
+
+    <target name="doxygen"
+        description="Generate doxygen documentation">
+        <copy todir="${workspace.dir}\doxygen\html">
+            <fileset basedir="${workspace.dir}\include">
+                <include name="HTML/**" />
+            </fileset>
+        </copy>
+        <copy todir="${workspace.dir}\doxygen\html">
+            <fileset basedir="${workspace.dir}\include\common">
+                <include name="**/HTML/**" />
+            </fileset>
+        </copy>
+        <copy todir="${workspace.dir}\doxygen\html">
+            <fileset basedir="${workspace.dir}\include\packages">
+                <include name="**/HTML/**" />
+            </fileset>
+        </copy>
+        <exec program="doxygen.exe" workingdir="${workspace.dir}">
+            <arg line="util/Doxygen/${doxygen.cfg}.cfg" />
+        </exec>
+    </target>
+
+    <target name="clean-doxygen"
+        description="Clean generated doxygen documentation">
+        <delete includeemptydirs="true">
+            <fileset basedir="${workspace.dir}">
+                <include name="doxygen/**" />
+            </fileset>
+        </delete>
+    </target>
+	
+    <target name="updateWizard"
+        description="update AXIS wizard">
+        <delete includeemptydirs="true">
+            <fileset basedir="C:\Program Files\Trolltech\Qt VS Integration">
+                <include name="**/*Axis*/**" />
+                <include name="**/*Axis*.*" />
+            </fileset>
+        </delete>
+        <copy todir="C:\Program Files\Trolltech\Qt VS Integration">
+            <fileset basedir="${workspace.dir}\util\AxisWizard">
+                <include name="**" />
+                <exclude name="**/AxisTemplate/**" />
+            </fileset>
+            <filterchain>
+                <replacetokens>
+                    <token key="AUTHOR_NAME" value="${sys.env.USERNAME}" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+    </target>
+
+    <target name="updateEA"
+        description="update EA">
+        <copy todir="C:\Program Files\Sparx Systems\EA">
+            <fileset basedir="${workspace.dir}\util\EA">
+                <include name="**" />
+            </fileset>
+            <filterchain>
+                <replacetokens>
+                    <token key="AXIS3000_TRUNK" value="${trunk.dir}" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+    </target>
+    
+</project>
