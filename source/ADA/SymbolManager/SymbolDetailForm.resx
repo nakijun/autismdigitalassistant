@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pictureBoxImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBoxImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 26</value>
+  </data>
+  <data name="pictureBoxImage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pictureBoxImage.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxImage.Name" xml:space="preserve">
+    <value>pictureBoxImage</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxImage.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxImage.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="symbolDetailDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>633, 15</value>
+  </data>
+  <data name="buttonOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="&gt;&gt;buttonOk.Name" xml:space="preserve">
+    <value>buttonOk</value>
+  </data>
+  <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonOk.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>633, 58</value>
+  </data>
+  <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
+    <value>buttonCancel</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="comboBoxCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 363</value>
+  </data>
+  <data name="comboBoxCategory.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="comboBoxCategory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>349, 24</value>
+  </data>
+  <data name="comboBoxCategory.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;comboBoxCategory.Name" xml:space="preserve">
+    <value>comboBoxCategory</value>
+  </data>
+  <data name="&gt;&gt;comboBoxCategory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBoxCategory.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comboBoxCategory.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="labelCategory.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 366</value>
+  </data>
+  <data name="labelCategory.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="labelCategory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 16</value>
+  </data>
+  <data name="labelCategory.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="labelCategory.Text" xml:space="preserve">
+    <value>Category:</value>
+  </data>
+  <data name="&gt;&gt;labelCategory.Name" xml:space="preserve">
+    <value>labelCategory</value>
+  </data>
+  <data name="&gt;&gt;labelCategory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelCategory.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelCategory.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonImportImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonImportImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 172</value>
+  </data>
+  <data name="buttonImportImage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="buttonImportImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 28</value>
+  </data>
+  <data name="buttonImportImage.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="buttonImportImage.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="&gt;&gt;buttonImportImage.Name" xml:space="preserve">
+    <value>buttonImportImage</value>
+  </data>
+  <data name="&gt;&gt;buttonImportImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonImportImage.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;buttonImportImage.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="buttonPlaySound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 28</value>
+  </data>
+  <data name="buttonPlaySound.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="buttonPlaySound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonPlaySound.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="buttonPlaySound.Text" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="&gt;&gt;buttonPlaySound.Name" xml:space="preserve">
+    <value>buttonPlaySound</value>
+  </data>
+  <data name="&gt;&gt;buttonPlaySound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonPlaySound.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;buttonPlaySound.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="buttonImportSound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>123, 28</value>
+  </data>
+  <data name="buttonImportSound.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="buttonImportSound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonImportSound.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="buttonImportSound.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="&gt;&gt;buttonImportSound.Name" xml:space="preserve">
+    <value>buttonImportSound</value>
+  </data>
+  <data name="&gt;&gt;buttonImportSound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonImportSound.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;buttonImportSound.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="languageDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="languageDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>130</value>
+  </data>
+  <data name="nameDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="nameDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="dataGridViewName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 26</value>
+  </data>
+  <data name="dataGridViewName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="dataGridViewName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>397, 198</value>
+  </data>
+  <data name="dataGridViewName.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewName.Name" xml:space="preserve">
+    <value>dataGridViewName</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewName.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonPasteImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonPasteImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 335</value>
+  </data>
+  <data name="buttonPasteImage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="buttonPasteImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 28</value>
+  </data>
+  <data name="buttonPasteImage.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="buttonPasteImage.Text" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="&gt;&gt;buttonPasteImage.Name" xml:space="preserve">
+    <value>buttonPasteImage</value>
+  </data>
+  <data name="&gt;&gt;buttonPasteImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonPasteImage.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;buttonPasteImage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonCopyImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonCopyImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 281</value>
+  </data>
+  <data name="buttonCopyImage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="buttonCopyImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 28</value>
+  </data>
+  <data name="buttonCopyImage.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="buttonCopyImage.Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="&gt;&gt;buttonCopyImage.Name" xml:space="preserve">
+    <value>buttonCopyImage</value>
+  </data>
+  <data name="&gt;&gt;buttonCopyImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonCopyImage.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;buttonCopyImage.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonExportImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonExportImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 226</value>
+  </data>
+  <data name="buttonExportImage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="buttonExportImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 28</value>
+  </data>
+  <data name="buttonExportImage.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="buttonExportImage.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="&gt;&gt;buttonExportImage.Name" xml:space="preserve">
+    <value>buttonExportImage</value>
+  </data>
+  <data name="&gt;&gt;buttonExportImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonExportImage.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;buttonExportImage.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 15</value>
+  </data>
+  <data name="groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 374</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 15</value>
+  </data>
+  <data name="groupBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>427, 231</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Localized Name</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonDeleteSound.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonDeleteSound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>337, 28</value>
+  </data>
+  <data name="buttonDeleteSound.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="buttonDeleteSound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonDeleteSound.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="buttonDeleteSound.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="&gt;&gt;buttonDeleteSound.Name" xml:space="preserve">
+    <value>buttonDeleteSound</value>
+  </data>
+  <data name="&gt;&gt;buttonDeleteSound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonDeleteSound.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;buttonDeleteSound.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonExportSound.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonExportSound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 28</value>
+  </data>
+  <data name="buttonExportSound.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="buttonExportSound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonExportSound.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="buttonExportSound.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="&gt;&gt;buttonExportSound.Name" xml:space="preserve">
+    <value>buttonExportSound</value>
+  </data>
+  <data name="&gt;&gt;buttonExportSound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonExportSound.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;buttonExportSound.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 268</value>
+  </data>
+  <data name="groupBox3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>427, 71</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>743, 402</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Symbol Details</value>
+  </data>
+  <data name="&gt;&gt;symbolDetailDataSet.Name" xml:space="preserve">
+    <value>symbolDetailDataSet</value>
+  </data>
+  <data name="&gt;&gt;symbolDetailDataSet.Type" xml:space="preserve">
+    <value>SymbolManager.SymbolDetailDataSet, SymbolDetailDataSet.Designer.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;languageDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>languageDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;languageDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nameDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>nameDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;nameDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SymbolDetailForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdaSchedulePpc", "AdaSchedulePpc\AdaSchedulePpc.csproj", "{4E0CC8AD-E9A3-42E5-A22F-B464EC2D5D37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesPpc", "UtilitiesPpc\UtilitiesPpc.csproj", "{D8AB685E-867E-47B0-B427-F6866743A0A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E0CC8AD-E9A3-42E5-A22F-B464EC2D5D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E0CC8AD-E9A3-42E5-A22F-B464EC2D5D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E0CC8AD-E9A3-42E5-A22F-B464EC2D5D37}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4E0CC8AD-E9A3-42E5-A22F-B464EC2D5D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E0CC8AD-E9A3-42E5-A22F-B464EC2D5D37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E0CC8AD-E9A3-42E5-A22F-B464EC2D5D37}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D8AB685E-867E-47B0-B427-F6866743A0A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8AB685E-867E-47B0-B427-F6866743A0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8AB685E-867E-47B0-B427-F6866743A0A4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D8AB685E-867E-47B0-B427-F6866743A0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8AB685E-867E-47B0-B427-F6866743A0A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8AB685E-867E-47B0-B427-F6866743A0A4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
