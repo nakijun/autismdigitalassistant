@@ -1,0 +1,109 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24D9527D-ECFA-4F55-871F-569F781838FE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XrossGDIPlus</RootNamespace>
+    <AssemblyName>XrossGDIPlus</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>4118C335-430C-497f-BE48-11C3316B135E</PlatformID>
+    <OSVersion>5.01</OSVersion>
+    <DeployDirSuffix>Storage Card\AdaPpc</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ADA.pfx</AssemblyOriginatorKeyFile>
+    <DeployDirPrefix>\</DeployDirPrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\StorageCard\AdaPpc\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\StorageCard\AdaPpc\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XrossOne\DrawingFP\BitmapBuffer.cs" />
+    <Compile Include="XrossOne\DrawingFP\BrushFP.cs" />
+    <Compile Include="XrossOne\DrawingFP\GradientBrushFP.cs" />
+    <Compile Include="XrossOne\DrawingFP\GraphicsFP.cs" />
+    <Compile Include="XrossOne\DrawingFP\GraphicsPathFP.cs" />
+    <Compile Include="XrossOne\DrawingFP\GraphicsPathIterator.cs" />
+    <Compile Include="XrossOne\DrawingFP\GraphicsPathOutline.cs" />
+    <Compile Include="XrossOne\DrawingFP\GraphicsPathRenderer.cs" />
+    <Compile Include="XrossOne\DrawingFP\GraphicsPathSketch.cs" />
+    <Compile Include="XrossOne\DrawingFP\LineFP.cs" />
+    <Compile Include="XrossOne\DrawingFP\PenFP.cs" />
+    <Compile Include="XrossOne\DrawingFP\PointFP.cs" />
+    <Compile Include="XrossOne\DrawingFP\RectangleFP.cs" />
+    <Compile Include="XrossOne\DrawingFP\SolidBrushFP.cs" />
+    <Compile Include="XrossOne\Drawing\BlendX.cs" />
+    <Compile Include="XrossOne\Drawing\BrushX.cs" />
+    <Compile Include="XrossOne\Drawing\ColorBlendX.cs" />
+    <Compile Include="XrossOne\Drawing\Enums.cs" />
+    <Compile Include="XrossOne\Drawing\GradientBrushX.cs" />
+    <Compile Include="XrossOne\Drawing\GraphicsX.cs" />
+    <Compile Include="XrossOne\Drawing\LinearGradientBrushX.cs" />
+    <Compile Include="XrossOne\Drawing\MatrixX.cs" />
+    <Compile Include="XrossOne\Drawing\PenX.cs" />
+    <Compile Include="XrossOne\Drawing\PointF.cs" />
+    <Compile Include="XrossOne\Drawing\RadialGradientBrushX.cs" />
+    <Compile Include="XrossOne\Drawing\SolidBrushX.cs" />
+    <Compile Include="XrossOne\Drawing\Utils.cs" />
+    <Compile Include="XrossOne\FixedPoint\DoubleFP.cs" />
+    <Compile Include="XrossOne\FixedPoint\MathFP.cs" />
+    <Compile Include="XrossOne\FixedPoint\MatrixFP.cs" />
+    <Compile Include="XrossOne\FixedPoint\SingleFP.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ADA.pfx" />
+  </ItemGroup>
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
