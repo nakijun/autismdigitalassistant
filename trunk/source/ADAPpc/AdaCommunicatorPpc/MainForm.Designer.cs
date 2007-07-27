@@ -30,8 +30,8 @@ namespace AdaCommunicatorPpc
         private void InitializeComponent()
         {
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
-            this.menuItemSpeak = new System.Windows.Forms.MenuItem();
-            this.menuItemClear = new System.Windows.Forms.MenuItem();
+            this.menuItemSelect = new System.Windows.Forms.MenuItem();
+            this.menuItemExit = new System.Windows.Forms.MenuItem();
             this.adaScenarioDataSet1 = new AdaCommunicatorPpc.ADAMobileDataSet();
             this.symbolListView1 = new UtilitiesPpc.SymbolListView();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -39,19 +39,19 @@ namespace AdaCommunicatorPpc
             // 
             // mainMenu1
             // 
-            this.mainMenu1.MenuItems.Add(this.menuItemSpeak);
-            this.mainMenu1.MenuItems.Add(this.menuItemClear);
+            this.mainMenu1.MenuItems.Add(this.menuItemSelect);
+            this.mainMenu1.MenuItems.Add(this.menuItemExit);
             // 
-            // menuItemSpeak
+            // menuItemSelect
             // 
-            this.menuItemSpeak.Enabled = false;
-            this.menuItemSpeak.Text = "Speak";
-            this.menuItemSpeak.Click += new System.EventHandler(this.menuItemSpeak_Click);
+            this.menuItemSelect.Enabled = false;
+            this.menuItemSelect.Text = "Select";
+            this.menuItemSelect.Click += new System.EventHandler(this.menuItemSelect_Click);
             // 
-            // menuItemClear
+            // menuItemExit
             // 
-            this.menuItemClear.Text = "Clear";
-            this.menuItemClear.Click += new System.EventHandler(this.menuItemClear_Click);
+            this.menuItemExit.Text = "Exit";
+            this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
             // adaScenarioDataSet1
             // 
@@ -89,6 +89,7 @@ namespace AdaCommunicatorPpc
             this.Name = "MainForm";
             this.Text = "ADA Communicator";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
             this.ResumeLayout(false);
 
         }
@@ -97,8 +98,8 @@ namespace AdaCommunicatorPpc
 
         private AdaCommunicatorPpc.ADAMobileDataSet adaScenarioDataSet1;
         private UtilitiesPpc.SymbolListView symbolListView1;
-        private System.Windows.Forms.MenuItem menuItemSpeak;
-        private System.Windows.Forms.MenuItem menuItemClear;
+        private System.Windows.Forms.MenuItem menuItemSelect;
+        private System.Windows.Forms.MenuItem menuItemExit;
         private System.Windows.Forms.TextBox textBox1;
     }
 }

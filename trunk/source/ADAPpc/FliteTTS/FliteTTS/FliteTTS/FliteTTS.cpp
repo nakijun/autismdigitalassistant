@@ -14,6 +14,8 @@
 #pragma comment(lib, "flitelib.lib")
 #pragma comment(lib, "usenglish.lib")
 
+const int MAX_AMP_DB = 10;
+
 extern "C" 
 {
 	cst_voice *REGISTER_VOX(const char *voxdir);
@@ -52,7 +54,7 @@ FLITETTS_API bool FliteTextToSpeech(LPSTR pstrText, LPSTR pstrFileName, float* p
 		return false;
 	}
 	
-	*pfSecond = flite_text_to_speech(pstrText, g_v, pstrFileName);
+	*pfSecond = flite_text_to_speech_normalized(pstrText, g_v, pstrFileName, MAX_AMP_DB);
 	
 	return true;
 }
@@ -78,7 +80,7 @@ FLITETTS_API bool FliteSayIt(LPSTR pstrText)
 		return false;
 	}
 	
-	flite_text_to_speech(pstrText, g_v, "play");
+	flite_text_to_speech_normalized(pstrText, g_v, "play", MAX_AMP_DB);
 	
 	return true;
 }

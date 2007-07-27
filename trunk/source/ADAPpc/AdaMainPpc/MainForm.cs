@@ -26,16 +26,16 @@ namespace AdaMainPpc
             "AdaMoneyPpc.exe" 
         };
 
-        private string appDir;
+        private string _appDir;
 
-        private SystemState cradlePresent;
+        private SystemState _connectionsCount;
 
-        private SystemState cradlePresent2;
+        private SystemState _connectionsCount2;
 
         public MainForm()
         {
             InitializeComponent();
-
+            
             this.listBox2App.Items.Add(this.listBox2ItemSchedule);
             this.listBox2App.Items.Add(this.listBox2ItemWorkSystem);
             this.listBox2App.Items.Add(this.listBox2ItemCommunicator);
@@ -45,20 +45,26 @@ namespace AdaMainPpc
             this.listBox2App.SelectedIndex = 0;
 
             string application = Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName;
-            this.appDir = Path.GetDirectoryName(application) + "\\";
+            this._appDir = Path.GetDirectoryName(application) + "\\";
 
-            cradlePresent = new SystemState(SystemProperty.CradlePresent);
+            _connectionsCount = new SystemState(SystemProperty.ConnectionsCount);
 
-            //cradlePresent.DisableApplicationLauncher();
-
-            cradlePresent.ComparisonType = StatusComparisonType.Equal;
-            cradlePresent.ComparisonValue = 0;
+            _connectionsCount.ComparisonType = StatusComparisonType.Equal;
+            _connectionsCount.ComparisonValue = 0;
 
             string fullyQualifiedName = (System.Reflection.Assembly.GetExecutingAssembly().GetModules())[0].FullyQualifiedName;
-            cradlePresent.EnableApplicationLauncher("ADASync", fullyQualifiedName, "-EVENT");
 
-            cradlePresent2 = new SystemState(SystemProperty.CradlePresent);
-            cradlePresent2.Changed += new ChangeEventHandler(cradlePresent_Changed);
+            if (IsDeployed)
+            {
+                _connectionsCount.EnableApplicationLauncher("ADASync", fullyQualifiedName, "-EVENT");
+            }
+            else
+            {
+                _connectionsCount.DisableApplicationLauncher();
+            }
+
+            _connectionsCount2 = new SystemState(SystemProperty.ConnectionsCount);
+            _connectionsCount2.Changed += new ChangeEventHandler(connectionsCount_Changed);
         }
 
         protected override void OnCultureChanged(CultureInfo newCulture)
@@ -72,9 +78,9 @@ namespace AdaMainPpc
             this.listBox2ItemMoney.Text = global::AdaMainPpc.Properties.Resources.Money;
         }
 
-        void cradlePresent_Changed(object sender, ChangeEventArgs args)
+        void connectionsCount_Changed(object sender, ChangeEventArgs args)
         {
-            if (!SystemState.CradlePresent)
+            if (SystemState.ConnectionsCount == 0)
             {
                 this.BringToFront();
             }
@@ -86,7 +92,7 @@ namespace AdaMainPpc
 
             try
             {
-                Process.Start(this.appDir + applicationName, arguments);
+                Process.Start(this._appDir + applicationName, arguments);
 
                 if (!IsBigMemory)
                 {
@@ -183,6 +189,11 @@ namespace AdaMainPpc
         private void menuItemAdvanced_Click(object sender, EventArgs e)
         {
             this.OpenApplication("AdaSyncPpc.exe");
+        }
+
+        private void menuItemExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

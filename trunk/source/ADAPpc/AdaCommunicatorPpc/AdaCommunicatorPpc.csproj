@@ -65,7 +65,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ADAMobileDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="FliteTTS.cs" />
     <Compile Include="TextDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -44,10 +44,13 @@ namespace AdaMainPpc
             this.menuItemTraditionalChinese = new System.Windows.Forms.MenuItem();
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItemAdvanced = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.menuItemExit = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // listBox2App
             // 
+            this.listBox2App.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("listBox2App.BackgroundImage")));
             resources.ApplyResources(this.listBox2App, "listBox2App");
             this.listBox2App.ImageList = this.imageListIcons;
             this.listBox2App.ItemHeight = 58;
@@ -114,6 +117,8 @@ namespace AdaMainPpc
             this.menuItemMenu.MenuItems.Add(this.menuItemTraditionalChinese);
             this.menuItemMenu.MenuItems.Add(this.menuItem1);
             this.menuItemMenu.MenuItems.Add(this.menuItemAdvanced);
+            this.menuItemMenu.MenuItems.Add(this.menuItem2);
+            this.menuItemMenu.MenuItems.Add(this.menuItemExit);
             resources.ApplyResources(this.menuItemMenu, "menuItemMenu");
             // 
             // menuItemEnglish
@@ -139,6 +144,15 @@ namespace AdaMainPpc
             // 
             resources.ApplyResources(this.menuItemAdvanced, "menuItemAdvanced");
             this.menuItemAdvanced.Click += new System.EventHandler(this.menuItemAdvanced_Click);
+            // 
+            // menuItem2
+            // 
+            resources.ApplyResources(this.menuItem2, "menuItem2");
+            // 
+            // menuItemExit
+            // 
+            resources.ApplyResources(this.menuItemExit, "menuItemExit");
+            this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
             // MainForm
             // 
@@ -174,6 +188,8 @@ namespace AdaMainPpc
         private System.Windows.Forms.MenuItem menuItemTraditionalChinese;
         private System.Windows.Forms.MenuItem menuItem1;
         private System.Windows.Forms.MenuItem menuItemAdvanced;
+        private System.Windows.Forms.MenuItem menuItem2;
+        private System.Windows.Forms.MenuItem menuItemExit;
     }
 }
 

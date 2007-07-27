@@ -123,8 +123,26 @@
   <data name="menuItemSync.Text" xml:space="preserve">
     <value>Sync</value>
   </data>
+  <data name="menuItemConnections.Text" xml:space="preserve">
+    <value>Connections</value>
+  </data>
   <data name="menuItemSymbolExplorer.Text" xml:space="preserve">
     <value>Browse</value>
+  </data>
+  <data name="menuItem4.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemSyncSymbol.Text" xml:space="preserve">
+    <value>Sync Symbol</value>
+  </data>
+  <data name="menuItemSyncSchedule.Text" xml:space="preserve">
+    <value>Sync Schedule</value>
+  </data>
+  <data name="menuItemSyncCommunicator.Text" xml:space="preserve">
+    <value>Sync Communicator</value>
+  </data>
+  <data name="menuItem3.Text" xml:space="preserve">
+    <value>-</value>
   </data>
   <data name="menuItemReinitialize.Text" xml:space="preserve">
     <value>Reinitialize</value>
@@ -314,6 +332,42 @@
   </data>
   <data name="&gt;&gt;timerAutoSync.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemConnections.Name" xml:space="preserve">
+    <value>menuItemConnections</value>
+  </data>
+  <data name="&gt;&gt;menuItemConnections.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem4.Name" xml:space="preserve">
+    <value>menuItem4</value>
+  </data>
+  <data name="&gt;&gt;menuItem4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemSyncSymbol.Name" xml:space="preserve">
+    <value>menuItemSyncSymbol</value>
+  </data>
+  <data name="&gt;&gt;menuItemSyncSymbol.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemSyncSchedule.Name" xml:space="preserve">
+    <value>menuItemSyncSchedule</value>
+  </data>
+  <data name="&gt;&gt;menuItemSyncSchedule.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemSyncCommunicator.Name" xml:space="preserve">
+    <value>menuItemSyncCommunicator</value>
+  </data>
+  <data name="&gt;&gt;menuItemSyncCommunicator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem3.Name" xml:space="preserve">
+    <value>menuItem3</value>
+  </data>
+  <data name="&gt;&gt;menuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

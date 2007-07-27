@@ -57,10 +57,10 @@ namespace AdaSchedulePpc
             // 
             this.menuItem1.MenuItems.Add(this.menuItemPlaySound);
             this.menuItem1.MenuItems.Add(this.menuItem2);
-            this.menuItem1.MenuItems.Add(this.menuItemNowThen);
             this.menuItem1.MenuItems.Add(this.menuItemTimer);
-            this.menuItem1.MenuItems.Add(this.menuItemWorkSystem);
             this.menuItem1.MenuItems.Add(this.menuItem3);
+            this.menuItem1.MenuItems.Add(this.menuItemWorkSystem);
+            this.menuItem1.MenuItems.Add(this.menuItemNowThen);
             this.menuItem1.Text = "Menu";
             // 
             // menuItemPlaySound

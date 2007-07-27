@@ -80,11 +80,21 @@ namespace AdaCommunicatorPpc
 
         void symbolListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_scenarioRow != null && symbolListView1.SelectedIndex >= 0)
+            if (symbolListView1.SelectedIndex < 0)
+            {
+                textBox1.Text = "";
+            }
+            else if (_scenarioRow != null)
             {
                 DataRow[] dataRows = adaScenarioDataSet1.Text.Select("ScenarioId=" + _scenarioRow.ScenarioId, "Name ASC");
                 ADAMobileDataSet.TextRow textRow = dataRows[symbolListView1.SelectedIndex] as ADAMobileDataSet.TextRow;
                 textBox1.Text = textRow.Descripton;
+            }
+            else
+            {
+                DataRow[] dataRows = adaScenarioDataSet1.Scenario.Select("", "Name ASC");
+                ADAMobileDataSet.ScenarioRow senarioRow = dataRows[symbolListView1.SelectedIndex] as ADAMobileDataSet.ScenarioRow;
+                textBox1.Text = senarioRow.Name;
             }
         }
 
@@ -92,7 +102,9 @@ namespace AdaCommunicatorPpc
         {
             if (_scenarioRow != null)
             {
-                ShowDetail(symbolListView1.SelectedIndex);
+                Cursor.Current = Cursors.WaitCursor;
+                _tts.SayIt(textBox1.Text);
+                Cursor.Current = Cursors.Default;
             }
             else
             {
@@ -104,11 +116,20 @@ namespace AdaCommunicatorPpc
 
         private void ShowScenarios()
         {
-            _scenarioRow = null;
+            ADAMobileDataSet.ScenarioRow lastScenarioRow = null;
+
+            if (_scenarioRow != null)
+            {
+                lastScenarioRow = _scenarioRow;
+                _scenarioRow = null;
+            }
+
             symbolListView1.Items.Clear();
 
             DataRow[] dataRows = adaScenarioDataSet1.Scenario.Select("", "Name ASC");
             int count = dataRows.Length;
+
+            int selectedScenario = (count > 0 ? 0 : -1);
 
             for (int i = 0; i < count; i++)
             {
@@ -131,17 +152,24 @@ namespace AdaCommunicatorPpc
                 item.Text = row.Name;
 
                 symbolListView1.Items.Add(item);
+
+                if (lastScenarioRow == row)
+                {
+                    selectedScenario = i;
+                }
             }
 
-            if (count > 0)
+            if (selectedScenario >= 0)
             {
-                symbolListView1.SelectedIndex = 0;
+                symbolListView1.SelectedIndex = selectedScenario;
             }
 
-            menuItemClear.Text = "Clear";
+            menuItemSelect.Text = "Select";
+            menuItemExit.Text = "Exit";
 
             this.Text = "Select Scenario";
             symbolListView1.Invalidate();
+            symbolListView1.Focus();
         }
 
         private void ShowTextButtons(ADAMobileDataSet.ScenarioRow scenarioRow)
@@ -177,15 +205,17 @@ namespace AdaCommunicatorPpc
 
                 symbolListView1.Items.Add(item);
             }
-            
+
             if (count > 0)
             {
                 symbolListView1.SelectedIndex = 0;
             }
 
             symbolListView1.Invalidate();
+            symbolListView1.Focus();
 
-            menuItemClear.Text = "Back";
+            menuItemSelect.Text = "Detail";
+            menuItemExit.Text = "Back";
 
             this.Text = scenarioRow.Name;
         }
@@ -206,30 +236,35 @@ namespace AdaCommunicatorPpc
             MessageBox.Show(statusMessage, this.Text);
         }
 
-        private void menuItemSpeak_Click(object sender, EventArgs e)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            _tts.SayIt(textBox1.Text);
-            Cursor.Current = Cursors.Default;
-        }
-
-        private void menuItemClear_Click(object sender, EventArgs e)
+        private void menuItemSelect_Click(object sender, EventArgs e)
         {
             if (_scenarioRow == null)
             {
-                textBox1.Text = "";
+                DataRow[] dataRows = adaScenarioDataSet1.Scenario.Select("", "Name ASC");
+                ADAMobileDataSet.ScenarioRow row = dataRows[symbolListView1.SelectedIndex] as ADAMobileDataSet.ScenarioRow;
+                ShowTextButtons(row);
+            }
+            else
+            {
+                ShowDetail(symbolListView1.SelectedIndex);
+            }
+        }
+
+        private void menuItemExit_Click(object sender, EventArgs e)
+        {
+            if (_scenarioRow == null)
+            {
+                Close();
             }
             else
             {
                 ShowScenarios();
             }
-
-            symbolListView1.Focus();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            menuItemSpeak.Enabled = (textBox1.Text.Length > 0);
+            menuItemSelect.Enabled = (textBox1.Text.Length > 0);
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -237,6 +272,15 @@ namespace AdaCommunicatorPpc
             if (e.KeyCode == Keys.Down)
             {
                 symbolListView1.Focus();
+            }
+        }
+
+        private void MainForm_Closing(object sender, CancelEventArgs e)
+        {
+            if (_scenarioRow != null)
+            {
+                e.Cancel = true;
+                ShowScenarios();
             }
         }
 

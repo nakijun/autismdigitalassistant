@@ -189,6 +189,34 @@ float flite_text_to_speech(const char *text,
 
     w = utt_wave(u);
 
+	durs = (float)w->num_samples/(float)w->sample_rate;
+	     
+    if (cst_streq(outtype,"play"))
+	play_wave(w);
+    else if (!cst_streq(outtype,"none"))
+	cst_wave_save_riff(w,outtype);
+    delete_utterance(u);
+
+    return durs;
+}
+
+float flite_text_to_speech_normalized(const char *text,
+			   cst_voice *voice,
+			   const char *outtype,
+			   int max_amp_db)
+{
+    cst_utterance *u;
+    cst_wave *w;
+    float durs;
+
+    u = flite_synth_text(text,voice);
+    if (u == NULL)
+	return -1;
+
+    w = utt_wave(u);
+
+	cst_wave_normalize(w, max_amp_db);
+
     durs = (float)w->num_samples/(float)w->sample_rate;
 	     
     if (cst_streq(outtype,"play"))

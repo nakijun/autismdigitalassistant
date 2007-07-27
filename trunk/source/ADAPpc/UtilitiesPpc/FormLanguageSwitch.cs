@@ -314,7 +314,7 @@ namespace UtilitiesPpc
             RecurControls(form, resources);
             // change the text of menus
             ScanNonControls(form, resources);
-            
+
             Cursor.Current = Cursors.Default;
 
             form.ResumeLayout();
@@ -411,7 +411,10 @@ namespace UtilitiesPpc
                         controlName = "$this";
                     object resObject = resources.GetObject(controlName + "." + propertyName, m_cultureInfo);
                     if (resObject != null)
-                        propertyInfo.SetValue(control, Convert.ChangeType(resObject, propertyInfo.PropertyType, null), null);
+                    {
+                        //propertyInfo.SetValue(control, Convert.ChangeType(resObject, propertyInfo.PropertyType, null), null);
+                        propertyInfo.SetValue(control, resObject, null);
+                    }
                 }
             }
             catch (AmbiguousMatchException e)

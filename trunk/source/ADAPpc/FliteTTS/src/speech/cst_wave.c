@@ -129,3 +129,62 @@ cst_wave *concat_wave(cst_wave *dest, const cst_wave *src)
 
     return dest;
 }
+
+void cst_wave_normalize(cst_wave *w, int max_amp_db)
+{
+	float mMult;
+	float mOffset;
+	float mMin;
+	float mMax;
+	float ratio;
+	float extent;
+	float temp;
+	double mSum;
+	int i;
+
+	mMin = 1.0;
+	mMax = -1.0;
+	mSum = 0.0;
+
+	for (i = 0; i < w->num_samples; ++i)
+	{
+		if (w->samples[i] < mMin)
+			mMin = w->samples[i];
+		if (w->samples[i] > mMax)
+			mMax = w->samples[i];
+		mSum += (double)w->samples[i];
+	}
+
+	mMult = 1.0;
+	mOffset = 0.0;
+
+	ratio = (float)pow(10.0, max_amp_db*10/200.0) * 32767.0;
+	//ratio = 32767.0;
+
+	mOffset = (float)(-mSum / w->num_samples);
+
+	extent = fabs(mMax + mOffset);
+	if (fabs(mMin + mOffset) > extent)
+		extent = fabs(mMin + mOffset);
+
+	if (extent > 0)
+		mMult = ratio / extent;
+
+	for (i = 0; i < w->num_samples; ++i)
+	{
+		temp = (w->samples[i] + mOffset) * mMult;
+		
+		if (temp > 32767)
+		{
+			w->samples[i] = 32767;
+		}
+		else if (temp < -32767)
+		{
+			w->samples[i] = -32767;
+		}
+		else
+		{
+			w->samples[i] = (short)temp;
+		}
+	}
+}
