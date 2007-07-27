@@ -47,6 +47,8 @@ namespace ADASchedule
             this.buttonPlaySound = new System.Windows.Forms.Button();
             this.pictureBoxImage = new System.Windows.Forms.PictureBox();
             this.buttonChangeSymbol = new System.Windows.Forms.Button();
+            this.dateTimePickerAlarm = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.adaScheduleDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSequence)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownScore)).BeginInit();
@@ -57,7 +59,7 @@ namespace ADASchedule
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(287, 16);
+            this.label1.Location = new System.Drawing.Point(289, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 16);
@@ -67,7 +69,7 @@ namespace ADASchedule
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 47);
+            this.label2.Location = new System.Drawing.Point(289, 47);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 16);
@@ -77,7 +79,7 @@ namespace ADASchedule
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(287, 77);
+            this.label3.Location = new System.Drawing.Point(289, 77);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 16);
@@ -87,7 +89,7 @@ namespace ADASchedule
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(287, 107);
+            this.label4.Location = new System.Drawing.Point(290, 107);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 16);
@@ -97,7 +99,7 @@ namespace ADASchedule
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(287, 137);
+            this.label5.Location = new System.Drawing.Point(289, 137);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 16);
@@ -107,7 +109,7 @@ namespace ADASchedule
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(287, 166);
+            this.label6.Location = new System.Drawing.Point(290, 196);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 16);
@@ -119,12 +121,13 @@ namespace ADASchedule
             this.dateTimePickerEndTime.CustomFormat = "HH:mm";
             this.dateTimePickerEndTime.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.adaScheduleDataSet1, "Activity.EndTime", true));
             this.dateTimePickerEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerEndTime.Location = new System.Drawing.Point(368, 134);
+            this.dateTimePickerEndTime.Location = new System.Drawing.Point(370, 134);
             this.dateTimePickerEndTime.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerEndTime.Name = "dateTimePickerEndTime";
             this.dateTimePickerEndTime.ShowUpDown = true;
             this.dateTimePickerEndTime.Size = new System.Drawing.Size(276, 22);
             this.dateTimePickerEndTime.TabIndex = 9;
+            this.dateTimePickerEndTime.ValueChanged += new System.EventHandler(this.dateTimePickerEndTime_ValueChanged);
             // 
             // adaScheduleDataSet1
             // 
@@ -134,7 +137,7 @@ namespace ADASchedule
             // textBoxDescription
             // 
             this.textBoxDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.adaScheduleDataSet1, "Activity.Descripton", true));
-            this.textBoxDescription.Location = new System.Drawing.Point(368, 74);
+            this.textBoxDescription.Location = new System.Drawing.Point(370, 74);
             this.textBoxDescription.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.Size = new System.Drawing.Size(276, 22);
@@ -143,7 +146,7 @@ namespace ADASchedule
             // numericUpDownSequence
             // 
             this.numericUpDownSequence.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.adaScheduleDataSet1, "Activity.Sequence", true));
-            this.numericUpDownSequence.Location = new System.Drawing.Point(368, 14);
+            this.numericUpDownSequence.Location = new System.Drawing.Point(370, 14);
             this.numericUpDownSequence.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownSequence.Minimum = new decimal(new int[] {
             1,
@@ -162,7 +165,7 @@ namespace ADASchedule
             // textBoxName
             // 
             this.textBoxName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.adaScheduleDataSet1, "Activity.Name", true));
-            this.textBoxName.Location = new System.Drawing.Point(368, 44);
+            this.textBoxName.Location = new System.Drawing.Point(370, 44);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(276, 22);
@@ -173,7 +176,7 @@ namespace ADASchedule
             this.dateTimePickerStartTime.CustomFormat = "HH:mm";
             this.dateTimePickerStartTime.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.adaScheduleDataSet1, "Activity.StartTime", true));
             this.dateTimePickerStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerStartTime.Location = new System.Drawing.Point(368, 104);
+            this.dateTimePickerStartTime.Location = new System.Drawing.Point(370, 104);
             this.dateTimePickerStartTime.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerStartTime.Name = "dateTimePickerStartTime";
             this.dateTimePickerStartTime.ShowUpDown = true;
@@ -188,7 +191,7 @@ namespace ADASchedule
             0,
             0,
             0});
-            this.numericUpDownScore.Location = new System.Drawing.Point(368, 164);
+            this.numericUpDownScore.Location = new System.Drawing.Point(370, 194);
             this.numericUpDownScore.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownScore.Name = "numericUpDownScore";
             this.numericUpDownScore.Size = new System.Drawing.Size(276, 22);
@@ -265,6 +268,28 @@ namespace ADASchedule
             this.buttonChangeSymbol.UseVisualStyleBackColor = true;
             this.buttonChangeSymbol.Click += new System.EventHandler(this.buttonChangeSymbol_Click);
             // 
+            // dateTimePickerAlarm
+            // 
+            this.dateTimePickerAlarm.CustomFormat = "HH:mm";
+            this.dateTimePickerAlarm.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerAlarm.Location = new System.Drawing.Point(370, 164);
+            this.dateTimePickerAlarm.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePickerAlarm.Name = "dateTimePickerAlarm";
+            this.dateTimePickerAlarm.ShowUpDown = true;
+            this.dateTimePickerAlarm.Size = new System.Drawing.Size(276, 22);
+            this.dateTimePickerAlarm.TabIndex = 23;
+            this.dateTimePickerAlarm.ValueChanged += new System.EventHandler(this.dateTimePickerAlarm_ValueChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(289, 167);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 16);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Alarm Time:";
+            // 
             // ActivityDetailForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -273,6 +298,8 @@ namespace ADASchedule
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(659, 345);
             this.ControlBox = false;
+            this.Controls.Add(this.dateTimePickerAlarm);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
@@ -327,5 +354,7 @@ namespace ADASchedule
         private System.Windows.Forms.Button buttonPlaySound;
         private System.Windows.Forms.PictureBox pictureBoxImage;
         private System.Windows.Forms.Button buttonChangeSymbol;
+        private System.Windows.Forms.DateTimePicker dateTimePickerAlarm;
+        private System.Windows.Forms.Label label7;
     }
 }

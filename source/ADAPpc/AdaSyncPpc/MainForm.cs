@@ -26,12 +26,13 @@ namespace AdaSyncPpc
         private const string REGISTRY_COMMUNICATOR_SYNC_TIME = "CommunicatorSync";
         private const string REGISTRY_DEVICE_ID = "DeviceID";
 
-        private string deviceID;
-        private string databaseFileName;
+        private bool _synchronized;
+        private string _deviceID;
+        private string _databaseFilePath;
 
+        private SystemState _connectionsCount;
+        private SystemState _connectionsCount2;
         private SystemState cradlePresent;
-
-        private SystemState cradlePresent2;
 
         public MainForm(bool autoSync)
         {
@@ -39,32 +40,34 @@ namespace AdaSyncPpc
 
             string fullyQualifiedName = Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName;
             string strAppDir = Path.GetDirectoryName(fullyQualifiedName);
-            databaseFileName = strAppDir + "\\ADAMobile.sdf";
+            _databaseFilePath = strAppDir + "\\ADAMobile.sdf";
 
-            FileInfo fileInfo = new FileInfo(databaseFileName);
+            FileInfo fileInfo = new FileInfo(_databaseFilePath);
             if (fileInfo.Exists)
             {
-
                 DateTime d = fileInfo.LastWriteTime;
                 this.labelModifiedTime.Text = d.ToShortDateString() + " " + d.ToShortTimeString();
             }
 
-            cradlePresent = new SystemState(SystemProperty.CradlePresent);
+            _connectionsCount = new SystemState(SystemProperty.ConnectionsCount);
 
-            cradlePresent.ComparisonType = StatusComparisonType.Equal;
-            cradlePresent.ComparisonValue = 1;
+            _connectionsCount.ComparisonType = StatusComparisonType.GreaterOrEqual;
+            _connectionsCount.ComparisonValue = 1;
 
             if (IsDeployed)
             {
-                cradlePresent.EnableApplicationLauncher("ADASync", fullyQualifiedName, "-EVENT");
+                _connectionsCount.EnableApplicationLauncher("ADASync", fullyQualifiedName, "-EVENT");
             }
             else
             {
-                cradlePresent.DisableApplicationLauncher();
+                _connectionsCount.DisableApplicationLauncher();
             }
 
-            cradlePresent2 = new SystemState(SystemProperty.CradlePresent);
-            cradlePresent2.Changed += new ChangeEventHandler(cradlePresent_Changed);
+            _connectionsCount2 = new SystemState(SystemProperty.ConnectionsCount);
+            _connectionsCount2.Changed += new ChangeEventHandler(connectionsCount_Changed);
+
+            cradlePresent = new SystemState(SystemProperty.CradlePresent);
+            cradlePresent.Changed += new ChangeEventHandler(connectionsCount_Changed);
 
             if (autoSync)
             {
@@ -90,14 +93,14 @@ namespace AdaSyncPpc
                 this.labelSyncTime.Text = d.ToShortDateString() + " " + d.ToShortTimeString();
             }
 
-            this.deviceID = this.Setting.GlobalSetting.GetValue(REGISTRY_DEVICE_ID, null) as string;
+            this._deviceID = this.Setting.GlobalSetting.GetValue(REGISTRY_DEVICE_ID, null) as string;
 
-            if (this.deviceID == null)
+            if (this._deviceID == null)
             {
                 try
                 {
-                    this.deviceID = DeviceID.GetDeviceID();
-                    this.Setting.GlobalSetting.SetValue(REGISTRY_DEVICE_ID, this.deviceID);
+                    this._deviceID = DeviceID.GetDeviceID();
+                    this.Setting.GlobalSetting.SetValue(REGISTRY_DEVICE_ID, this._deviceID);
                 }
                 catch (Exception ex)
                 {
@@ -108,30 +111,33 @@ namespace AdaSyncPpc
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (!File.Exists(databaseFileName))
+            if (!File.Exists(_databaseFilePath))
             {
                 menuItemSymbolExplorer.Enabled = false;
             }
 
-            cradlePresent_Changed(sender, null);
+            connectionsCount_Changed(sender, null);
         }
 
-        void cradlePresent_Changed(object sender, ChangeEventArgs args)
+        void connectionsCount_Changed(object sender, ChangeEventArgs args)
         {
-            this.menuItemSync.Enabled = SystemState.CradlePresent;
-            this.menuItemReinitialize.Enabled = SystemState.CradlePresent;
+            this.menuItemSync.Enabled = SystemState.ConnectionsCount > 0;
+            this.menuItemReinitialize.Enabled = SystemState.ConnectionsCount > 0;
+            this.menuItemSyncSymbol.Enabled = SystemState.ConnectionsCount > 0;
+            this.menuItemSyncSchedule.Enabled = SystemState.ConnectionsCount > 0;
+            this.menuItemSyncCommunicator.Enabled = SystemState.ConnectionsCount > 0;
 
-            this.textBoxStatus.Text = (SystemState.CradlePresent ? "Connected" : "Disconnected");
+            showConnections();
 
-            if (args != null && SystemState.CradlePresent)
+            if (args != null && SystemState.ConnectionsCount > 0 && !_synchronized)
             {
                 this.Synchronize();
             }
 
-            if (args != null && !SystemState.CradlePresent)
-            {
-                this.Close();
-            }
+            //if (args != null && SystemState.ConnectionsCount)
+            //{
+            //    this.Close();
+            //}
         }
 
         private bool Synchronize()
@@ -165,11 +171,11 @@ namespace AdaSyncPpc
                 repl.Publication = subsriptionName;
                 repl.Subscriber = subsriptionName;
                 repl.SubscriberConnectionString = ("Data Source ="
-                        + (databaseFileName)
+                        + (_databaseFilePath)
                         + (";Password =" + "\"\";"));
-                repl.HostName = deviceID;
+                repl.HostName = _deviceID;
 
-                if (!File.Exists(databaseFileName))
+                if (!File.Exists(_databaseFilePath))
                 {
                     repl.AddSubscription(AddOption.CreateDatabase);
                 }
@@ -223,17 +229,17 @@ namespace AdaSyncPpc
 
         private void timerAutoSync_Tick(object sender, EventArgs e)
         {
-            if (SystemState.CradlePresent)
+            this.timerAutoSync.Enabled = false;
+
+            if (SystemState.ConnectionsCount > 0)
             {
                 if (this.Synchronize())
                 {
                     this.Update();
-                    //Thread.Sleep(2000);
-                    //this.Close();
+                    Thread.Sleep(2000);
+                    this.Close();
                 }
             }
-
-            this.timerAutoSync.Enabled = false;
         }
 
         private void menuItemSymbolExplorer_Click(object sender, EventArgs e)
@@ -266,27 +272,77 @@ namespace AdaSyncPpc
 
         private void menuItemReinitialize_Click(object sender, EventArgs e)
         {
+            if (File.Exists(_databaseFilePath))
+            {
+                File.Delete(_databaseFilePath);
+            }
+
             Synchronize(true);
         }
 
         private bool Synchronize(bool reinitializeSubscription)
         {
+            bool result = false;
             this.textBoxStatus.Text = "";
 
             if (SynchronizeSubscription("Symbol", reinitializeSubscription, REGISTRY_SYMBOL_LIBRARY_SYNC_TIME, this.labelSyncTime))
             {
                 if (SynchronizeSubscription("Schedule", reinitializeSubscription, REGISTRY_SCHEDULE_SYNC_TIME, this.labelSyncTime))
                 {
-                    return SynchronizeSubscription("Communicator", reinitializeSubscription, REGISTRY_COMMUNICATOR_SYNC_TIME, this.labelSyncTime);
+                    result = SynchronizeSubscription("Communicator", reinitializeSubscription, REGISTRY_COMMUNICATOR_SYNC_TIME, this.labelSyncTime);
                 }
             }
 
-            return false;
+            menuItemSymbolExplorer.Enabled = File.Exists(_databaseFilePath);
+
+            if (!_synchronized && result)
+            {
+                _synchronized = true; ;
+            }
+
+            return result;
         }
 
         private void menuItemExit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void menuItemConnections_Click(object sender, EventArgs e)
+        {
+            showConnections();
+        }
+
+        private void showConnections()
+        {
+            this.textBoxStatus.Text = (SystemState.CradlePresent ? "Cradle Connected" : "Cradle Disconnected") + "\r\n";
+
+            this.textBoxStatus.Text += "ConnectionsCount = " + SystemState.ConnectionsCount + "\r\n";
+
+            this.textBoxStatus.Text += "ConnectionsDesktopCount = " + SystemState.ConnectionsDesktopCount + "\r\n";
+            this.textBoxStatus.Text += "ConnectionsDesktopDescriptions = " + SystemState.ConnectionsDesktopDescriptions + "\r\n";
+
+            this.textBoxStatus.Text += "ConnectionsNetworkAdapters = " + SystemState.ConnectionsNetworkAdapters + "\r\n";
+            this.textBoxStatus.Text += "ConnectionsNetworkCount = " + SystemState.ConnectionsNetworkCount + "\r\n";
+            this.textBoxStatus.Text += "ConnectionsNetworkDescriptions = " + SystemState.ConnectionsNetworkDescriptions + "\r\n";
+
+            this.textBoxStatus.Text += "ConnectionsBluetoothCount = " + SystemState.ConnectionsBluetoothCount + "\r\n";
+            this.textBoxStatus.Text += "ConnectionsBluetoothDescriptions = " + SystemState.ConnectionsBluetoothDescriptions + "\r\n";
+        }
+
+        private void menuItemSyncSymbol_Click(object sender, EventArgs e)
+        {
+            SynchronizeSubscription("Symbol", false, REGISTRY_SYMBOL_LIBRARY_SYNC_TIME, this.labelSyncTime);
+        }
+
+        private void menuItemSyncSchedule_Click(object sender, EventArgs e)
+        {
+            SynchronizeSubscription("Schedule", false, REGISTRY_SCHEDULE_SYNC_TIME, this.labelSyncTime);
+        }
+
+        private void menuItemSyncCommunicator_Click(object sender, EventArgs e)
+        {
+            SynchronizeSubscription("Communicator", false, REGISTRY_COMMUNICATOR_SYNC_TIME, this.labelSyncTime);
         }
     }
 }

@@ -63,6 +63,12 @@ namespace ADASchedule
                 ActivityTableAdapter activityAdapter = new ActivityTableAdapter();
                 activityAdapter.Fill(dataSet.Activity, date);
 
+                ReminderTableAdapter reminderAdapter = new ReminderTableAdapter();
+                reminderAdapter.Fill(dataSet.Reminder);
+
+                Activity_ReminderTableAdapter arAdapter = new Activity_ReminderTableAdapter();
+                arAdapter.Fill(dataSet.Activity_Reminder, date);
+
                 if (loadSymbol)
                 {
                     dataSet.EnforceConstraints = true;
@@ -153,6 +159,12 @@ namespace ADASchedule
             currentActivityRow.Sequence = sequenceMax + 1;
             currentActivityRow.StartTime = endTimeMax;
             currentActivityRow.EndTime = endTimeMax + endTimeMax.Subtract(startTimeMax);
+
+            if (currentActivityRow.EndTime == currentActivityRow.StartTime)
+            {
+                currentActivityRow.EndTime = currentActivityRow.StartTime.Add(new TimeSpan(1, 0, 0));
+            }
+
             currentActivityRow.Name = string.Format("Step {0}", currentActivityRow.Sequence);
 
             if (lastActivityRow != null)
@@ -162,6 +174,12 @@ namespace ADASchedule
             }
 
             f.ScheduleDataSet.Activity.AddActivityRow(currentActivityRow);
+
+            ADAScheduleDataSet.Activity_ReminderRow activityReminderRow = f.ScheduleDataSet.Activity_Reminder.NewActivity_ReminderRow();
+            activityReminderRow.ActivityId = currentActivityRow.ActivityId;
+            activityReminderRow.ReminderId = ADADataAccess.Constants.ALARM_REMINDER_ID;
+            activityReminderRow.Time = currentActivityRow.EndTime.Subtract(new TimeSpan(0, 15, 0));
+            f.ScheduleDataSet.Activity_Reminder.AddActivity_ReminderRow(activityReminderRow);
 
             f.ScheduleDataSet.DefaultViewManager.DataViewSettings["Activity"].RowFilter = "ActivityId=" + currentActivityRow.ActivityId;
 
@@ -220,8 +238,8 @@ namespace ADASchedule
                 ActivityTableAdapter activityAdapter = new ActivityTableAdapter();
                 activityAdapter.Update(adaScheduleDataSet1);
 
-                ReminderTableAdapter reminder = new ReminderTableAdapter();
-                reminder.Update(adaScheduleDataSet1);
+                ReminderTableAdapter reminderAdapter = new ReminderTableAdapter();
+                reminderAdapter.Update(adaScheduleDataSet1);
 
                 Activity_ReminderTableAdapter arAdapter = new Activity_ReminderTableAdapter();
                 arAdapter.Update(adaScheduleDataSet1);

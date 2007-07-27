@@ -17,6 +17,8 @@ namespace ADASchedule
     {
         private const string ACTIVITY_TABLE = "Activity";
 
+        private TimeSpan _alarmTimeSpan = new TimeSpan(0, -15, 0);
+
         public ADAScheduleDataSet ScheduleDataSet
         {
             get { return adaScheduleDataSet1; }
@@ -56,6 +58,17 @@ namespace ADASchedule
             {
                 row.Sequence = i++;
             }
+
+            ADAScheduleDataSet.Activity_ReminderRow[] activityReminderRows = activityRow.GetActivity_ReminderRows();
+
+            foreach (ADAScheduleDataSet.Activity_ReminderRow activityReminderRow in activityReminderRows)
+            {
+                if (!activityReminderRow.IsTimeNull() &&
+                    activityReminderRow.ReminderId == ADADataAccess.Constants.ALARM_REMINDER_ID)
+                {
+                    activityReminderRow.Time = this.dateTimePickerAlarm.Value;
+                }
+            }
         }
 
         private void ActivityDetailForm_Load(object sender, EventArgs e)
@@ -69,6 +82,18 @@ namespace ADASchedule
                 {
                     byte[] image = activityRow.SymbolRow.Image;
                     this.pictureBoxImage.Image = ImageEngine.Resize(ImageEngine.FromArray(image), this.pictureBoxImage.Size);
+                }
+            }
+
+            ADAScheduleDataSet.Activity_ReminderRow[] activityReminderRows = activityRow.GetActivity_ReminderRows();
+
+            foreach (ADAScheduleDataSet.Activity_ReminderRow activityReminderRow in activityReminderRows)
+            {
+                if (!activityReminderRow.IsTimeNull() &&
+                    activityReminderRow.ReminderId == ADADataAccess.Constants.ALARM_REMINDER_ID)
+                {
+                    this.dateTimePickerAlarm.Value = activityReminderRow.Time;
+                    _alarmTimeSpan = activityReminderRow.Time - activityRow.EndTime;
                 }
             }
 
@@ -151,6 +176,16 @@ namespace ADASchedule
             // ...post the caller's message to the status bar.
             MessageBox.Show(statusMessage, this.Text,
                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void dateTimePickerEndTime_ValueChanged(object sender, EventArgs e)
+        {
+            this.dateTimePickerAlarm.Value = this.dateTimePickerEndTime.Value.Add(_alarmTimeSpan);
+        }
+
+        private void dateTimePickerAlarm_ValueChanged(object sender, EventArgs e)
+        {
+            _alarmTimeSpan = this.dateTimePickerAlarm.Value - this.dateTimePickerEndTime.Value;
         }
 
     }

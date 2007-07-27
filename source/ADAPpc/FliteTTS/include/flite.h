@@ -75,6 +75,10 @@ float flite_file_to_speech(const char *filename,
 float flite_text_to_speech(const char *text, 
 			   cst_voice *voice,
 			   const char *outtype);
+float flite_text_to_speech_normalized(const char *text, 
+			   cst_voice *voice,
+			   const char *outtype,
+			   int max_amp_db);
 float flite_phones_to_speech(const char *text, 
 			     cst_voice *voice,
 			     const char *outtype);
