@@ -31,16 +31,6 @@ namespace ADAWorkSystem
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Sequence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActivityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Image = new System.Windows.Forms.DataGridViewImageColumn();
-            this.activityIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scheduleIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sequenceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.symbolIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.adaWorkSystemDataSet1 = new ADAWorkSystem.ADAWorkSystemDataSet();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonDelete = new System.Windows.Forms.Button();
@@ -64,6 +54,9 @@ namespace ADAWorkSystem
             this.simplifiedChineseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.traditionalChineseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.Sequence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActivityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Image = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adaWorkSystemDataSet1)).BeginInit();
@@ -83,7 +76,7 @@ namespace ADAWorkSystem
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(594, 648);
+            this.groupBox1.Size = new System.Drawing.Size(594, 650);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Activities";
@@ -102,14 +95,7 @@ namespace ADAWorkSystem
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Sequence,
             this.ActivityName,
-            this.Image,
-            this.activityIdDataGridViewTextBoxColumn,
-            this.scheduleIdDataGridViewTextBoxColumn,
-            this.sequenceDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.descriptonDataGridViewTextBoxColumn,
-            this.symbolIdDataGridViewTextBoxColumn,
-            this.imageDataGridViewImageColumn});
+            this.Image});
             this.dataGridView1.DataMember = "Schedule.FK_Activity_Schedule";
             this.dataGridView1.DataSource = this.adaWorkSystemDataSet1;
             this.dataGridView1.Location = new System.Drawing.Point(8, 23);
@@ -118,93 +104,10 @@ namespace ADAWorkSystem
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(568, 582);
+            this.dataGridView1.Size = new System.Drawing.Size(568, 584);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // Sequence
-            // 
-            this.Sequence.DataPropertyName = "Sequence";
-            this.Sequence.HeaderText = "Sequence";
-            this.Sequence.Name = "Sequence";
-            this.Sequence.ReadOnly = true;
-            this.Sequence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Sequence.Width = 76;
-            // 
-            // ActivityName
-            // 
-            this.ActivityName.DataPropertyName = "Name";
-            this.ActivityName.HeaderText = "Activity";
-            this.ActivityName.Name = "ActivityName";
-            this.ActivityName.ReadOnly = true;
-            this.ActivityName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ActivityName.Width = 56;
-            // 
-            // Image
-            // 
-            this.Image.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Image.DataPropertyName = "Image";
-            this.Image.HeaderText = "Image";
-            this.Image.Name = "Image";
-            this.Image.ReadOnly = true;
-            this.Image.Width = 52;
-            // 
-            // activityIdDataGridViewTextBoxColumn
-            // 
-            this.activityIdDataGridViewTextBoxColumn.DataPropertyName = "ActivityId";
-            this.activityIdDataGridViewTextBoxColumn.HeaderText = "ActivityId";
-            this.activityIdDataGridViewTextBoxColumn.Name = "activityIdDataGridViewTextBoxColumn";
-            this.activityIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.activityIdDataGridViewTextBoxColumn.Width = 86;
-            // 
-            // scheduleIdDataGridViewTextBoxColumn
-            // 
-            this.scheduleIdDataGridViewTextBoxColumn.DataPropertyName = "ScheduleId";
-            this.scheduleIdDataGridViewTextBoxColumn.HeaderText = "ScheduleId";
-            this.scheduleIdDataGridViewTextBoxColumn.Name = "scheduleIdDataGridViewTextBoxColumn";
-            this.scheduleIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.scheduleIdDataGridViewTextBoxColumn.Width = 101;
-            // 
-            // sequenceDataGridViewTextBoxColumn
-            // 
-            this.sequenceDataGridViewTextBoxColumn.DataPropertyName = "Sequence";
-            this.sequenceDataGridViewTextBoxColumn.HeaderText = "Sequence";
-            this.sequenceDataGridViewTextBoxColumn.Name = "sequenceDataGridViewTextBoxColumn";
-            this.sequenceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sequenceDataGridViewTextBoxColumn.Width = 95;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // descriptonDataGridViewTextBoxColumn
-            // 
-            this.descriptonDataGridViewTextBoxColumn.DataPropertyName = "Descripton";
-            this.descriptonDataGridViewTextBoxColumn.HeaderText = "Descripton";
-            this.descriptonDataGridViewTextBoxColumn.Name = "descriptonDataGridViewTextBoxColumn";
-            this.descriptonDataGridViewTextBoxColumn.ReadOnly = true;
-            this.descriptonDataGridViewTextBoxColumn.Width = 98;
-            // 
-            // symbolIdDataGridViewTextBoxColumn
-            // 
-            this.symbolIdDataGridViewTextBoxColumn.DataPropertyName = "SymbolId";
-            this.symbolIdDataGridViewTextBoxColumn.HeaderText = "SymbolId";
-            this.symbolIdDataGridViewTextBoxColumn.Name = "symbolIdDataGridViewTextBoxColumn";
-            this.symbolIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.symbolIdDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // imageDataGridViewImageColumn
-            // 
-            this.imageDataGridViewImageColumn.DataPropertyName = "Image";
-            this.imageDataGridViewImageColumn.HeaderText = "Image";
-            this.imageDataGridViewImageColumn.Name = "imageDataGridViewImageColumn";
-            this.imageDataGridViewImageColumn.ReadOnly = true;
-            this.imageDataGridViewImageColumn.Width = 52;
             // 
             // adaWorkSystemDataSet1
             // 
@@ -225,7 +128,7 @@ namespace ADAWorkSystem
             this.tableLayoutPanel3.Controls.Add(this.buttonAddActivity, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.buttonEdit, 3, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 608);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 610);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
@@ -278,7 +181,7 @@ namespace ADAWorkSystem
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(593, 648);
+            this.groupBox2.Size = new System.Drawing.Size(593, 650);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Work Systems";
@@ -292,7 +195,7 @@ namespace ADAWorkSystem
             this.listViewWorkSystem.Margin = new System.Windows.Forms.Padding(4);
             this.listViewWorkSystem.MultiSelect = false;
             this.listViewWorkSystem.Name = "listViewWorkSystem";
-            this.listViewWorkSystem.Size = new System.Drawing.Size(585, 589);
+            this.listViewWorkSystem.Size = new System.Drawing.Size(585, 591);
             this.listViewWorkSystem.TabIndex = 13;
             this.listViewWorkSystem.UseCompatibleStateImageBehavior = false;
             this.listViewWorkSystem.ItemActivate += new System.EventHandler(this.listViewWorkSystem_ItemActivate);
@@ -318,7 +221,7 @@ namespace ADAWorkSystem
             this.tableLayoutPanel2.Controls.Add(this.buttonEditWorkSystem, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonDeleteWorkSystem, 5, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 608);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 610);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -370,7 +273,7 @@ namespace ADAWorkSystem
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStripMain.Size = new System.Drawing.Size(1203, 26);
+            this.menuStripMain.Size = new System.Drawing.Size(1203, 24);
             this.menuStripMain.TabIndex = 11;
             // 
             // systemToolStripMenuItem
@@ -381,32 +284,32 @@ namespace ADAWorkSystem
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(69, 22);
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(105, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(95, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -417,27 +320,27 @@ namespace ADAWorkSystem
             this.simplifiedChineseToolStripMenuItem,
             this.traditionalChineseToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            this.languageToolStripMenuItem.Size = new System.Drawing.Size(83, 22);
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.languageToolStripMenuItem.Text = "Language";
             // 
             // englishToolStripMenuItem
             // 
             this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-            this.englishToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.englishToolStripMenuItem.Text = "English";
             this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
             // 
             // simplifiedChineseToolStripMenuItem
             // 
             this.simplifiedChineseToolStripMenuItem.Name = "simplifiedChineseToolStripMenuItem";
-            this.simplifiedChineseToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.simplifiedChineseToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.simplifiedChineseToolStripMenuItem.Text = "Simplified Chinese";
             this.simplifiedChineseToolStripMenuItem.Click += new System.EventHandler(this.simplifiedChineseToolStripMenuItem_Click);
             // 
             // traditionalChineseToolStripMenuItem
             // 
             this.traditionalChineseToolStripMenuItem.Name = "traditionalChineseToolStripMenuItem";
-            this.traditionalChineseToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.traditionalChineseToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.traditionalChineseToolStripMenuItem.Text = "Traditional Chinese";
             this.traditionalChineseToolStripMenuItem.Click += new System.EventHandler(this.traditionalChineseToolStripMenuItem_Click);
             // 
@@ -449,13 +352,40 @@ namespace ADAWorkSystem
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 26);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1203, 656);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1203, 658);
             this.tableLayoutPanel1.TabIndex = 12;
+            // 
+            // Sequence
+            // 
+            this.Sequence.DataPropertyName = "Sequence";
+            this.Sequence.HeaderText = "Sequence";
+            this.Sequence.Name = "Sequence";
+            this.Sequence.ReadOnly = true;
+            this.Sequence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Sequence.Width = 76;
+            // 
+            // ActivityName
+            // 
+            this.ActivityName.DataPropertyName = "Name";
+            this.ActivityName.HeaderText = "Activity";
+            this.ActivityName.Name = "ActivityName";
+            this.ActivityName.ReadOnly = true;
+            this.ActivityName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ActivityName.Width = 56;
+            // 
+            // Image
+            // 
+            this.Image.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Image.DataPropertyName = "Image";
+            this.Image.HeaderText = "Image";
+            this.Image.Name = "Image";
+            this.Image.ReadOnly = true;
+            this.Image.Width = 52;
             // 
             // MainForm
             // 
@@ -509,20 +439,13 @@ namespace ADAWorkSystem
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sequence;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ActivityName;
-        private System.Windows.Forms.DataGridViewImageColumn Image;
-        private System.Windows.Forms.DataGridViewTextBoxColumn activityIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn scheduleIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sequenceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptonDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn symbolIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn imageDataGridViewImageColumn;
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simplifiedChineseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem traditionalChineseToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sequence;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ActivityName;
+        private System.Windows.Forms.DataGridViewImageColumn Image;
 
     }
 }

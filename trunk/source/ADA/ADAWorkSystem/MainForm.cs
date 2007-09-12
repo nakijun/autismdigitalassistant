@@ -161,7 +161,7 @@ namespace ADAWorkSystem
             ADAWorkSystemDataSet.ActivityRow lastActivityRow = null;
 
             foreach (ADAWorkSystemDataSet.ActivityRow activityRow in
-                currentScheduleRow.GetActivityRowsByFK_Activity_Schedule())
+                currentScheduleRow.GetActivityRows())
             {
                 if (sequenceMax < activityRow.Sequence)
                 {
@@ -284,101 +284,6 @@ namespace ADAWorkSystem
                 }
             }
         }
-
-        private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            if (adaWorkSystemDataSet1.HasChanges())
-            {
-                string statusMessage = "Data has been changed. Do you want to save it?";
-
-                if (MessageBox.Show(statusMessage, this.Text,
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    SaveDataSet();
-                }
-            }
-
-            LoadDataSet();
-        }
-
-        private void buttonCopy_Click(object sender, EventArgs e)
-        {
-            SelectDateForm selectDateForm = new SelectDateForm();
-
-            if (selectDateForm.ShowDialog(this) == DialogResult.OK)
-            {
-                for (DateTime copyToDate = selectDateForm.SelectionRange.Start;
-                    copyToDate.CompareTo(selectDateForm.SelectionRange.End) <= 0;
-                    copyToDate = copyToDate.AddDays(1))
-                {
-                    Cursor.Current = Cursors.WaitCursor;
-                    ADAWorkSystemDataSet dataSet = new ADAWorkSystemDataSet();
-
-                    try
-                    {
-                        LoadDataSet(dataSet, false);
-
-                        foreach (ADAWorkSystemDataSet.ScheduleRow scheduleRow in dataSet.Schedule.Rows)
-                        {
-                            scheduleRow.Delete();
-                        }
-
-                        ScheduleTableAdapter scheduleAdapter = new ScheduleTableAdapter();
-                        ActivityTableAdapter activityAdapter = new ActivityTableAdapter();
-
-                        activityAdapter.Update(dataSet);
-                        scheduleAdapter.Update(dataSet);
-
-                        DataRow[] scheduleRows = adaWorkSystemDataSet1.Schedule.Select();
-                        foreach (ADAWorkSystemDataSet.ScheduleRow scheduleRow in scheduleRows)
-                        {
-                            ADAWorkSystemDataSet.ScheduleRow newScheduleRow;
-                            newScheduleRow = dataSet.Schedule.NewScheduleRow();
-                            newScheduleRow.Type = scheduleRow.Type;
-                            newScheduleRow.IsActive = true;
-                            dataSet.Schedule.AddScheduleRow(newScheduleRow);
-
-                            scheduleAdapter.Update(dataSet);
-
-                            foreach (ADAWorkSystemDataSet.ActivityRow activityRow in scheduleRow.GetActivityRowsByFK_Activity_Schedule())
-                            {
-                                ADAWorkSystemDataSet.ActivityRow newActivityRow;
-
-                                newActivityRow = dataSet.Activity.NewActivityRow();
-                                newActivityRow.ScheduleId = newScheduleRow.ScheduleId;
-
-                                if (!activityRow.IsSymbolIdNull())
-                                {
-                                    newActivityRow.SymbolId = activityRow.SymbolId;
-                                }
-
-                                if (!activityRow.IsNameNull())
-                                {
-                                    newActivityRow.Name = activityRow.Name;
-                                }
-
-                                if (!activityRow.IsSequenceNull())
-                                {
-                                    newActivityRow.Sequence = activityRow.Sequence;
-                                }
-
-                                dataSet.Activity.AddActivityRow(newActivityRow);
-                                activityAdapter.Update(dataSet);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ReportError(ex);
-                    }
-                }
-
-                Cursor.Current = Cursors.Default;
-
-                LoadDataSet();
-            }
-        }
-
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -1,3 +1,3 @@
 @echo off
 nant -buildfile:%BUILDFILE% commit %*
-call backup-svn.bat
+rem call backup-svn.bat

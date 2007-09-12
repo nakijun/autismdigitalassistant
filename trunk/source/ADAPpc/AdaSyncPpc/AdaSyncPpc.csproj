@@ -131,10 +131,6 @@
     <Compile Include="SymbolQueryTableAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ADAMobile.sdf">
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ADA.pfx" />
     <None Include="ADAMobileDataSet.xsc">
       <DependentUpon>ADAMobileDataSet.xsd</DependentUpon>
