@@ -249,6 +249,14 @@ namespace ADAWorkSystem {
             base.Tables.Add(this.tableSchedule);
             this.tableSymbol = new SymbolDataTable();
             base.Tables.Add(this.tableSymbol);
+            System.Data.ForeignKeyConstraint fkc;
+            fkc = new System.Data.ForeignKeyConstraint("FK_Activity_Schedule", new System.Data.DataColumn[] {
+                        this.tableSchedule.ScheduleIdColumn}, new System.Data.DataColumn[] {
+                        this.tableActivity.ScheduleIdColumn});
+            this.tableActivity.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = System.Data.Rule.Cascade;
+            fkc.UpdateRule = System.Data.Rule.Cascade;
             this.relationFK_Activity_Schedule = new System.Data.DataRelation("FK_Activity_Schedule", new System.Data.DataColumn[] {
                         this.tableSchedule.ScheduleIdColumn}, new System.Data.DataColumn[] {
                         this.tableActivity.ScheduleIdColumn}, false);
@@ -1184,7 +1192,7 @@ namespace ADAWorkSystem {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ScheduleRow ScheduleRowByFK_Activity_Schedule {
+            public ScheduleRow ScheduleRow {
                 get {
                     return ((ScheduleRow)(this.GetParentRow(this.Table.ParentRelations["FK_Activity_Schedule"])));
                 }
@@ -1396,7 +1404,7 @@ namespace ADAWorkSystem {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ActivityRow[] GetActivityRowsByFK_Activity_Schedule() {
+            public ActivityRow[] GetActivityRows() {
                 return ((ActivityRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Activity_Schedule"])));
             }
         }

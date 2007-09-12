@@ -103,8 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ADA.pfx" />
-    <Content Include="ADAMobile.sdf">
-    </Content>
     <None Include="ADAMobileDataSet.xsc">
       <DependentUpon>ADAMobileDataSet.xsd</DependentUpon>
     </None>
