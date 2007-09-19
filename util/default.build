@@ -120,7 +120,7 @@
         description="Commit to SVN">
         <exec program="TortoiseProc.exe" failonerror="false">
             <arg line="/command:commit" />
-            <arg line="/path:${current.dir}" />
+            <arg line="/path:&quot;${current.dir}&quot;" />
             <arg line="/notempfile" />
             <arg line="/closeonend" />
         </exec>
