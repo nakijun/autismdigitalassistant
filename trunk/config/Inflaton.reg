@@ -1,0 +1,38 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Inflaton]
+
+[HKEY_LOCAL_MACHINE\Software\Inflaton\ADA]
+"Language"="en"
+"IsDeployed"="false"
+"IsBigMemory"="false"
+"DeviceID"="10BE8E0605850A616800-0050BF1977E0"
+
+[HKEY_LOCAL_MACHINE\Software\Inflaton\ADA\AdaCommunicatorPpc]
+
+[HKEY_LOCAL_MACHINE\Software\Inflaton\ADA\AdaMainPpc]
+
+[HKEY_LOCAL_MACHINE\Software\Inflaton\ADA\AdaMoneyPpc]
+
+[HKEY_LOCAL_MACHINE\Software\Inflaton\ADA\AdaSchedulePpc]
+"SymbolView"="True"
+
+[HKEY_LOCAL_MACHINE\Software\Inflaton\ADA\AdaSyncPpc]
+"CommunicatorSync"="07-9-12 15:42:26"
+"ScheduleSync"="07-9-12 15:42:15"
+"SymbolSync"="07-9-12 15:41:59"
+"Server"="hdh"
+
+[HKEY_LOCAL_MACHINE\Software\Inflaton\ADA\AdaTimerPpc]
+"Running"="False"
+"Handle"=dword:3a00001c
+"SetMinutes"=dword:00000001
+"EndTime"="07-7-15 18:08:30"
+"PreAlarmEnabled"="False"
+"AlarmHandle"=dword:3d000021
+"AlarmDateTime"="07-6-28 18:44:55"
+"AlarmSet"="True"
+"AlarmPeriod"=dword:00000005
+
+[HKEY_LOCAL_MACHINE\Software\Inflaton\ADA\AdaWorkSystemPpc]
+

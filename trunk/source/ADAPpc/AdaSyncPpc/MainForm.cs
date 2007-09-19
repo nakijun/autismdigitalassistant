@@ -23,7 +23,6 @@ namespace AdaSyncPpc
     {
         private const string REGISTRY_SYMBOL_LIBRARY_SYNC_TIME = "SymbolSync";
         private const string REGISTRY_SCHEDULE_SYNC_TIME = "ScheduleSync";
-        private const string REGISTRY_COMMUNICATOR_SYNC_TIME = "CommunicatorSync";
         private const string REGISTRY_DEVICE_ID = "DeviceID";
 
         private bool _synchronized;
@@ -86,13 +85,6 @@ namespace AdaSyncPpc
                 DateTime d = Convert.ToDateTime(syncTimeValue);
             }
 
-            syncTimeValue = this.Setting.LocalSetting.GetValue(REGISTRY_COMMUNICATOR_SYNC_TIME, null) as string;
-            if (syncTimeValue != null)
-            {
-                DateTime d = Convert.ToDateTime(syncTimeValue);
-                this.labelSyncTime.Text = d.ToShortDateString() + " " + d.ToShortTimeString();
-            }
-
             this._deviceID = this.Setting.GlobalSetting.GetValue(REGISTRY_DEVICE_ID, null) as string;
 
             if (this._deviceID == null)
@@ -111,33 +103,14 @@ namespace AdaSyncPpc
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (!File.Exists(_databaseFilePath))
-            {
-                menuItemSymbolExplorer.Enabled = false;
-            }
-
             connectionsCount_Changed(sender, null);
         }
 
         void connectionsCount_Changed(object sender, ChangeEventArgs args)
         {
             this.menuItemSync.Enabled = SystemState.ConnectionsCount > 0;
-            this.menuItemReinitialize.Enabled = SystemState.ConnectionsCount > 0;
-            this.menuItemSyncSymbol.Enabled = SystemState.ConnectionsCount > 0;
-            this.menuItemSyncSchedule.Enabled = SystemState.ConnectionsCount > 0;
-            this.menuItemSyncCommunicator.Enabled = SystemState.ConnectionsCount > 0;
 
             showConnections();
-
-            if (args != null && SystemState.ConnectionsCount > 0 && !_synchronized)
-            {
-                this.Synchronize();
-            }
-
-            //if (args != null && SystemState.ConnectionsCount)
-            //{
-            //    this.Close();
-            //}
         }
 
         private bool Synchronize()
@@ -270,16 +243,6 @@ namespace AdaSyncPpc
             }
         }
 
-        private void menuItemReinitialize_Click(object sender, EventArgs e)
-        {
-            if (File.Exists(_databaseFilePath))
-            {
-                File.Delete(_databaseFilePath);
-            }
-
-            Synchronize(true);
-        }
-
         private bool Synchronize(bool reinitializeSubscription)
         {
             bool result = false;
@@ -287,13 +250,8 @@ namespace AdaSyncPpc
 
             if (SynchronizeSubscription("Symbol", reinitializeSubscription, REGISTRY_SYMBOL_LIBRARY_SYNC_TIME, this.labelSyncTime))
             {
-                if (SynchronizeSubscription("Schedule", reinitializeSubscription, REGISTRY_SCHEDULE_SYNC_TIME, this.labelSyncTime))
-                {
-                    result = SynchronizeSubscription("Communicator", reinitializeSubscription, REGISTRY_COMMUNICATOR_SYNC_TIME, this.labelSyncTime);
-                }
+                result = SynchronizeSubscription("Schedule", reinitializeSubscription, REGISTRY_SCHEDULE_SYNC_TIME, this.labelSyncTime);
             }
-
-            menuItemSymbolExplorer.Enabled = File.Exists(_databaseFilePath);
 
             if (!_synchronized && result)
             {
@@ -328,21 +286,6 @@ namespace AdaSyncPpc
 
             this.textBoxStatus.Text += "ConnectionsBluetoothCount = " + SystemState.ConnectionsBluetoothCount + "\r\n";
             this.textBoxStatus.Text += "ConnectionsBluetoothDescriptions = " + SystemState.ConnectionsBluetoothDescriptions + "\r\n";
-        }
-
-        private void menuItemSyncSymbol_Click(object sender, EventArgs e)
-        {
-            SynchronizeSubscription("Symbol", false, REGISTRY_SYMBOL_LIBRARY_SYNC_TIME, this.labelSyncTime);
-        }
-
-        private void menuItemSyncSchedule_Click(object sender, EventArgs e)
-        {
-            SynchronizeSubscription("Schedule", false, REGISTRY_SCHEDULE_SYNC_TIME, this.labelSyncTime);
-        }
-
-        private void menuItemSyncCommunicator_Click(object sender, EventArgs e)
-        {
-            SynchronizeSubscription("Communicator", false, REGISTRY_COMMUNICATOR_SYNC_TIME, this.labelSyncTime);
         }
     }
 }

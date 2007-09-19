@@ -26,7 +26,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\StorageCard\AdaPpc\</OutputPath>
+    <OutputPath>..\..\..\..\StorageCard\AdaPpc\</OutputPath>
     <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
@@ -132,6 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ADA.pfx" />
+    <Content Include="ADAMobile.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="ADAMobileDataSet.xsc">
       <DependentUpon>ADAMobileDataSet.xsd</DependentUpon>
     </None>
