@@ -1,15 +1,14 @@
 @echo off
-rem goto restore
 
 net stop SQLSERVERAGENT
 net stop mssqlserver
 
 net start mssqlserver
-net start SQLSERVERAGENT
 
-:restore
 sqlcmd -i %WORKSPACE%\Schema\DisablePublishingDistribution.sql
 if errorlevel 1 goto error
+
+net start SQLSERVERAGENT
 
 sqlcmd -Q "RESTORE DATABASE ADA FROM DISK = '%WORKSPACE%\Schema\%1\ADA.bck' WITH REPLACE"
 if errorlevel 1 goto error
