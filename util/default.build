@@ -130,7 +130,7 @@
         description="Update latest changes from SVN">
         <exec program="TortoiseProc.exe" failonerror="false">
             <arg line="/command:update" />
-            <arg line="/path:${current.dir}" />
+            <arg line="/path:&quot;${current.dir}&quot;" />
             <arg line="/notempfile" />
             <arg line="/closeonend" />
         </exec>
