@@ -130,7 +130,7 @@ namespace AdaSyncPpc
                 PerformanceSampling.StartSample(0, "Synchronization time");
                 repl = new SqlCeReplication();
 
-                repl.Publisher = (string)Setting.LocalSetting.GetValue("Server", "hdhibm");
+                repl.Publisher = (string)Setting.LocalSetting.GetValue("Server", "WIN2003");
                 repl.InternetUrl = string.Format("http://{0}/ADA/sqlcesa30.dll", repl.Publisher);
 
                 this.textBoxStatus.Text += "Synchronizing " + subsriptionName + " data with " + repl.Publisher + " ...\r\n";
