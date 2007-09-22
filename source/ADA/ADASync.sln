@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADASync", "ADASync\ADASync.csproj", "{9E02663A-9905-4DA9-BB52-47DCA44D3E96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenNETCF.Desktop.Communication", "Communication\OpenNETCF.Desktop.Communication.csproj", "{60FD337B-8EB5-4E20-A951-6EBB09CCE442}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E02663A-9905-4DA9-BB52-47DCA44D3E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E02663A-9905-4DA9-BB52-47DCA44D3E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E02663A-9905-4DA9-BB52-47DCA44D3E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E02663A-9905-4DA9-BB52-47DCA44D3E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60FD337B-8EB5-4E20-A951-6EBB09CCE442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60FD337B-8EB5-4E20-A951-6EBB09CCE442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60FD337B-8EB5-4E20-A951-6EBB09CCE442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60FD337B-8EB5-4E20-A951-6EBB09CCE442}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

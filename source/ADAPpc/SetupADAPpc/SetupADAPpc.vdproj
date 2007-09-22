@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_4552A0A332F54D418CE8EF80D07F71F5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_66879FA371424AC5BA1392ADBAC937F4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -23,6 +29,18 @@
         {
         "MsmKey" = "8:_AA24BAB3B68E44B672C22A47E235F95B"
         "OwnerKey" = "8:_F23F251BA5E84778A6F110E9F8012F1E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AC05E316D0214608AFA34DB7204A495F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D584ADD1A97F40BC8237C7DB4A60F739"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -147,6 +165,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4552A0A332F54D418CE8EF80D07F71F5"
+            {
+            "SourcePath" = "8:sqlce30.ppc.wce5.armv4i.CAB"
+            "TargetName" = "8:sqlce30.ppc.wce5.armv4i.CAB"
+            "Tag" = "8:"
+            "Folder" = "8:_39F38333BF25421393A45F96AACEC748"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AA24BAB3B68E44B672C22A47E235F95B"
             {
             "AssemblyRegister" = "3:1"
@@ -176,6 +214,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AC05E316D0214608AFA34DB7204A495F"
+            {
+            "SourcePath" = "8:sqlce30.repl.ppc.wce5.armv4i.CAB"
+            "TargetName" = "8:sqlce30.repl.ppc.wce5.armv4i.CAB"
+            "Tag" = "8:"
+            "Folder" = "8:_39F38333BF25421393A45F96AACEC748"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D584ADD1A97F40BC8237C7DB4A60F739"
+            {
+            "SourcePath" = "8:NETCFv2.wm.armv4i.cab"
+            "TargetName" = "8:NETCFv2.wm.armv4i.cab"
+            "Tag" = "8:"
+            "Folder" = "8:_39F38333BF25421393A45F96AACEC748"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }

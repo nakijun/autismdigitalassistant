@@ -61,6 +61,8 @@ namespace UtilitiesPpc
 
             this._languageRegistryState = new RegistryState(@"HKEY_LOCAL_MACHINE\SOFTWARE\Inflaton\ADA", REGISTRY_LANGUAGE);
             this._languageRegistryState.Changed += new ChangeEventHandler(languageRegistryState_Changed);
+            
+            this._isDeployed = false;
 
             object o = this._setting.GlobalSetting.GetValue(REGISTRY_IS_DEPLOYED);
             if (o != null)
@@ -109,7 +111,7 @@ namespace UtilitiesPpc
 
         private void InitCulture()
         {
-            string cultureName = CultureInfo.CurrentCulture.Parent.Name;
+            string cultureName = ENGLISH_CULTURE;// CultureInfo.CurrentCulture.Parent.Name;
             cultureName = (string)this._setting.GlobalSetting.GetValue(REGISTRY_LANGUAGE, cultureName);
 
             if (!FormLanguageSwitchSingleton.Instance.IsCultureSupported(cultureName))
