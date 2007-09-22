@@ -17,7 +17,10 @@ Public Class SetupApp
         If ceAppPath = String.Empty Then
             Return
         End If
-        Dim iniPath As String = GetIniPath()
+        Dim iniPath As String = GetIniPath("Setup.ini")
+        iniPath = iniPath & " " & GetIniPath("Setup2.ini")
+        iniPath = iniPath & " " & GetIniPath("Setup3.ini")
+        iniPath = iniPath & " " & GetIniPath("Setup4.ini")
         Process.Start(ceAppPath, iniPath)
 
     End Sub
@@ -30,7 +33,7 @@ Public Class SetupApp
         If ceAppPath = String.Empty Then
             Return
         End If
-        Dim iniPath As String = GetIniPath()
+        Dim iniPath As String = GetIniPath("Setup4.ini")
         Process.Start(ceAppPath, String.Empty)
     End Sub
 
@@ -47,12 +50,12 @@ Public Class SetupApp
         End If
     End Function
 
-    Public Shared Function GetIniPath() As String
+    Public Shared Function GetIniPath(ByVal file As String) As String
         '---get the path of the .ini file---
         Return """" & _
            Path.Combine(Path.GetDirectoryName( _
            System.Reflection.Assembly. _
-           GetExecutingAssembly().Location), "Setup.ini") & """"
+           GetExecutingAssembly().Location), file) & """"
     End Function
 
     Private Shared Function KeyExists() As String

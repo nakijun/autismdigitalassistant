@@ -83,6 +83,7 @@ namespace AdaSyncPpc
             if (syncTimeValue != null)
             {
                 DateTime d = Convert.ToDateTime(syncTimeValue);
+                this.labelSyncTime.Text = d.ToShortDateString() + " " + d.ToShortTimeString();
             }
 
             this._deviceID = this.Setting.GlobalSetting.GetValue(REGISTRY_DEVICE_ID, null) as string;
