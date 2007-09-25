@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ADAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ADAConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ADASync.Properties.Settings.GlobalReference.Default.ADAConnectionString" Provider="System.Data.SqlClient">
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ADAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ADAConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ADAControlCentre.Properties.Settings.GlobalReference.Default.ADAConnectionString" Provider="System.Data.SqlClient">
           </Connection>
         </Connections>
         <Tables>
