@@ -6,11 +6,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using OpenNETCF.Desktop.Communication;
-using ADASync.ADAUserDataSetTableAdapters;
+using ADAControlCentre.ADAUserDataSetTableAdapters;
 using System.Diagnostics;
 using System.Data.SqlClient;
+using System.Reflection;
+using System.IO;
 
-namespace ADASync
+namespace ADAControlCentre
 {
     public partial class MainForm : Form
     {
@@ -18,6 +20,8 @@ namespace ADASync
         const int OWNER_NOTES_LENGTH = 388;
 
         private CERegistryKey _adaSyncRegKey;
+
+        private string _appDir;
 
         internal class TextArgs : EventArgs
         {
@@ -51,6 +55,9 @@ namespace ADASync
         public MainForm()
         {
             InitializeComponent();
+
+            string application = Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName;
+            this._appDir = Path.GetDirectoryName(application) + "\\";
 
             // create our global RAPI object
             this.rapi = new RAPI();
@@ -111,6 +118,18 @@ namespace ADASync
 
         private void ReadDeviceInfo()
         {
+            string deviceId = (string)ReadRegistry(CERegistry.LocalMachine, "DeviceID", "Software", "Inflaton", "ADA");
+
+            if (deviceId == null)
+            {
+                deviceId = Guid.NewGuid().ToString();
+                WriteRegistry(CERegistry.LocalMachine, "DeviceID", deviceId, "Software", "Inflaton", "ADA");
+            }
+
+            string deviceName = (string)ReadRegistry(CERegistry.LocalMachine, "Name", "Ident");
+
+            this.labelCurrentPDA.Text = deviceName + "  [" + deviceId + "]";
+
             string userName = (string)ReadRegistry(CERegistry.CurrentUser, "Name", "ControlPanel", "Owner");
 
             if (userName == null || userName.Length == 0)
@@ -118,9 +137,6 @@ namespace ADASync
                 MessageBox.Show(this, "Please update the owner information of the Pockete PC!", "Error");
                 return;
             }
-
-            string deviceId = (string)ReadRegistry(CERegistry.LocalMachine, "DeviceID", "Software", "Inflaton", "ADA");
-            string deviceName = (string)ReadRegistry(CERegistry.LocalMachine, "Name", "Ident");
 
             try
             {
@@ -222,46 +238,21 @@ namespace ADASync
             this.Invoke(enableUpdate, new object[] { this, new EnableArgs(buttonRefreshCurrentUser, true) });
             this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonReadServerSetting, true) });
             this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonWriteServerSetting, true) });
-            this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonRunSync, true) });
-            this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonRun, true) });
-            this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonBackupDB, true) });
-            this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonRestoreDB, true) });
         }
 
         private void rapi_RAPIDisconnected()
         {
             this.Invoke(textUpdate, new object[] { this, new TextArgs(connectStatus, "Not Connected") });
+            this.Invoke(textUpdate, new object[] { this, new TextArgs(labelCurrentPDA, "") });
+            this.Invoke(textUpdate, new object[] { this, new TextArgs(labelCurrentUser, "") });
             this.Invoke(enableUpdate, new object[] { this, new EnableArgs(buttonRefreshCurrentUser, false) });
             this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonReadServerSetting, false) });
             this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonWriteServerSetting, false) });
-            this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonRunSync, false) });
-            this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonRun, false) });
-            this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonBackupDB, false) });
-            this.Invoke(enableUpdate, new object[] { this, new EnableArgs(this.buttonRestoreDB, false) });
         }
 
         private void buttonRefreshCurrentUser_Click(object sender, EventArgs e)
         {
             this.ReadDeviceInfo();
-            //SelectUserForm f = new SelectUserForm();
-            //f.UserDataSet.Merge(adaUserDataSet1);
-            //if (DialogResult.OK == f.ShowDialog(this))
-            //{
-            //    try
-            //    {
-            //        adaUserDataSet1.Merge(f.UserDataSet);
-
-            //        DeviceTableAdapter dta = new DeviceTableAdapter();
-            //        dta.Update(this.adaUserDataSet1.Device);
-
-            //        UpdateDeviceInfo();
-            //        UpdateCurrentUser();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.ToString());
-            //    }
-            //}
         }
 
         private void WriteRegistry(CERegistryKey rootKey, string name, object value, params string[] subKeys)
@@ -298,11 +289,6 @@ namespace ADASync
             WriteRegistry(CERegistry.CurrentUser, "Owner Notes", ownerNotes, "ControlPanel", "Owner");
         }
 
-        private void buttonManageUser_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonReadServerSetting_Click(object sender, EventArgs e)
         {
             this.OpenRegistryKey();
@@ -332,57 +318,6 @@ namespace ADASync
 
         }
 
-        private void buttonRun_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.rapi.CreateProcess(this.textBoxSyncApp.Text);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-
-        }
-
-        private void buttonRunSync_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.rapi.CreateProcess(this.textBoxSyncApp.Text, "--EVENT");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-        }
-
-        private void buttonBackupDB_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.rapi.CopyFileOnDevice(@"\Storage Card\AdaPpc\ADAMobile.sdf", @"\Storage Card\AdaPpc\ADAMobile-" + this.textBoxServerSetting.Text + ".sdf", true);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-
-        }
-
-        private void buttonRestoreDB_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.rapi.CopyFileOnDevice(@"\Storage Card\AdaPpc\ADAMobile-" + this.textBoxServerName.Text + ".sdf", @"\Storage Card\AdaPpc\ADAMobile.sdf");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-
-        }
-
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (this._adaSyncRegKey != null)
@@ -397,5 +332,36 @@ namespace ADASync
                 }
             }
         }
+
+        private void OpenApplication(string applicationName)
+        {
+            string arguments = "";
+
+            try
+            {
+                Process.Start(this._appDir + applicationName, arguments);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+
+        private void buttonSymbolManager_Click(object sender, EventArgs e)
+        {
+            OpenApplication("SymbolManager.exe");
+        }
+
+        private void buttonWorkSystem_Click(object sender, EventArgs e)
+        {
+            OpenApplication("AdaWorkSystem.exe");
+        }
+
+        private void buttonAnalyzer_Click(object sender, EventArgs e)
+        {
+            OpenApplication("AdaAnalyzer.exe");
+        }
+
+
     }
 }
