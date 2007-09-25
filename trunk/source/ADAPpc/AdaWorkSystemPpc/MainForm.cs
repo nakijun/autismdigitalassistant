@@ -14,12 +14,15 @@ namespace AdaWorkSystemPpc
     public partial class MainForm : AdaBaseForm
     {
         private ADAMobileDataSet.ScheduleRow _scheduleRow;
+        private string _userName;
 
         public MainForm()
         {
             InitializeComponent();
 
             this.symbolListView1.ItemActivated += new EventHandler(symbolListView1_ItemActivated);
+
+            _userName = (string)ReadRegistry(Registry.CurrentUser, "Name", "ControlPanel", "Owner");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -47,9 +50,8 @@ namespace AdaWorkSystemPpc
             {
                 adaScheduleDataSet1.EnforceConstraints = false;
 
-                string userName = (string)ReadRegistry(Registry.CurrentUser, "Name", "ControlPanel", "Owner");
                 UserTableAdapter userAdapter = new UserTableAdapter();
-                userAdapter.Fill(adaScheduleDataSet1.User, userName);
+                userAdapter.Fill(adaScheduleDataSet1.User);
 
                 ScheduleTableAdapter scheduleAdapter = new ScheduleTableAdapter();
                 scheduleAdapter.Fill(adaScheduleDataSet1.Schedule);
@@ -291,6 +293,17 @@ namespace AdaWorkSystemPpc
 
             try
             {
+                //ADAMobileDataSet.UserDataTable userTable = adaScheduleDataSet1.User;
+
+                //if (userTable.Count > 0 && _userName != null
+                //    && _userName.Length > 0 && userTable.Rows[0]["Name"] != _userName)
+                //{
+                //    userTable.Rows[0]["Name"] = _userName;
+                //    UserTableAdapter userAdapter = new UserTableAdapter();
+                //    int number = userAdapter.Update(adaScheduleDataSet1.User);
+                //}
+                adaScheduleDataSet1.EnforceConstraints = false;
+
                 ScheduleTableAdapter scheduleAdapter = new ScheduleTableAdapter();
                 scheduleAdapter.Init();
                 int ret = scheduleAdapter.Update(adaScheduleDataSet1.Schedule);
@@ -298,6 +311,8 @@ namespace AdaWorkSystemPpc
                 ActivityTableAdapter activityAdapter = new ActivityTableAdapter();
                 activityAdapter.Init();
                 ret = activityAdapter.Update(adaScheduleDataSet1.Activity);
+
+                adaScheduleDataSet1.EnforceConstraints = true;
             }
             catch (Exception ex)
             {
