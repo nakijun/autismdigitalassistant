@@ -36,6 +36,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADADataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADADataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ADAUserDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,6 +68,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ADADataSet.xsc">
+      <DependentUpon>ADADataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ADADataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ADADataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ADADataSet.xss">
+      <DependentUpon>ADADataSet.xsd</DependentUpon>
+    </None>
     <None Include="ADAUserDataSet.xsc">
       <DependentUpon>ADAUserDataSet.xsd</DependentUpon>
     </None>
