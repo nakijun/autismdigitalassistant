@@ -250,10 +250,16 @@ namespace AdaWorkSystemPpc
             {
                 if (detailForm.ActivityRow.RowState == DataRowState.Modified)
                 {
+                    int nextActivity = GetCurrentActivity();
+
+                    if (nextActivity >= 0 && currentActivity != nextActivity)
+                    {
+                        ADAMobileDataSet.ActivityRow activityRow = dataRows[nextActivity] as ADAMobileDataSet.ActivityRow;
+                        activityRow.ExecutionStart = DateTime.Now;
+                    }
+
                     if (UpdateCurrentActivity())
                     {
-                        int nextActivity = GetCurrentActivity();
-
                         if (currentActivity != nextActivity)
                         {
                             RefreshViews();

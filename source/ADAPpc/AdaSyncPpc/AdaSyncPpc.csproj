@@ -71,7 +71,6 @@
       <DependentUpon>ADAMobileDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="SymbolDetailForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="SymbolDetailForm.Designer.cs">
       <DependentUpon>SymbolDetailForm.cs</DependentUpon>
@@ -123,7 +122,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="SymbolListForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="SymbolListForm.Designer.cs">
       <DependentUpon>SymbolListForm.cs</DependentUpon>
