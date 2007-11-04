@@ -1990,7 +1990,7 @@ namespace ADAAnalyzer.ADAWorkSystemDataSetTableAdapters {
             this._adapter.InsertCommand = new System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [Activity] ([ScheduleId], [Sequence], [Name], [Descripton], [Score], [ExecutionStart], [ExecutionEnd]) VALUES (@ScheduleId, @Sequence, @Name, @Descripton, @Score, @ExecutionStart, @ExecutionEnd);
-SELECT ActivityId, ScheduleId, Sequence, Name, Descripton, Score, ExecutionStart, ExecutionEnd FROM Activity WHERE (ActivityId = SCOPE_IDENTITY())";
+SELECT ActivityId, ScheduleId, Sequence, Name, Descripton, Score, ExecutionStart, ExecutionEnd FROM Activity WHERE (ActivityId = SCOPE_IDENTITY()) ORDER BY ExecutionEnd";
             this._adapter.InsertCommand.CommandType = System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@ScheduleId", System.Data.SqlDbType.Int, 0, System.Data.ParameterDirection.Input, 0, 0, "ScheduleId", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@Sequence", System.Data.SqlDbType.Int, 0, System.Data.ParameterDirection.Input, 0, 0, "Sequence", System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2002,7 +2002,7 @@ SELECT ActivityId, ScheduleId, Sequence, Name, Descripton, Score, ExecutionStart
             this._adapter.UpdateCommand = new System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [Activity] SET [ScheduleId] = @ScheduleId, [Sequence] = @Sequence, [Name] = @Name, [Descripton] = @Descripton, [Score] = @Score, [ExecutionStart] = @ExecutionStart, [ExecutionEnd] = @ExecutionEnd WHERE (([ActivityId] = @Original_ActivityId) AND ((@IsNull_ScheduleId = 1 AND [ScheduleId] IS NULL) OR ([ScheduleId] = @Original_ScheduleId)) AND ((@IsNull_Sequence = 1 AND [Sequence] IS NULL) OR ([Sequence] = @Original_Sequence)) AND ((@IsNull_Name = 1 AND [Name] IS NULL) OR ([Name] = @Original_Name)) AND ((@IsNull_Descripton = 1 AND [Descripton] IS NULL) OR ([Descripton] = @Original_Descripton)) AND ((@IsNull_Score = 1 AND [Score] IS NULL) OR ([Score] = @Original_Score)) AND ((@IsNull_ExecutionStart = 1 AND [ExecutionStart] IS NULL) OR ([ExecutionStart] = @Original_ExecutionStart)) AND ((@IsNull_ExecutionEnd = 1 AND [ExecutionEnd] IS NULL) OR ([ExecutionEnd] = @Original_ExecutionEnd)));
-SELECT ActivityId, ScheduleId, Sequence, Name, Descripton, Score, ExecutionStart, ExecutionEnd FROM Activity WHERE (ActivityId = @ActivityId)";
+SELECT ActivityId, ScheduleId, Sequence, Name, Descripton, Score, ExecutionStart, ExecutionEnd FROM Activity WHERE (ActivityId = @ActivityId) ORDER BY ExecutionEnd";
             this._adapter.UpdateCommand.CommandType = System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@ScheduleId", System.Data.SqlDbType.Int, 0, System.Data.ParameterDirection.Input, 0, 0, "ScheduleId", System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@Sequence", System.Data.SqlDbType.Int, 0, System.Data.ParameterDirection.Input, 0, 0, "Sequence", System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2040,9 +2040,16 @@ SELECT ActivityId, ScheduleId, Sequence, Name, Descripton, Score, ExecutionStart
             this._commandCollection = new System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ActivityId, ScheduleId, Sequence, Name, Descripton, Score, ExecutionStart," +
-                " ExecutionEnd\r\nFROM    Activity\r\nWHERE (ScheduleId IN\r\n                (SELECT S" +
-                "cheduleId\r\n                FROM    Schedule\r\n                WHERE (Type = 3)))";
+            this._commandCollection[0].CommandText = @"SELECT ActivityId, ScheduleId, Sequence, Name, Descripton, Score, ExecutionStart, ExecutionEnd
+FROM    Activity
+WHERE (ScheduleId IN
+                (SELECT ScheduleId
+                FROM    Schedule
+                WHERE (Type = 3) AND (IsActive = 0) AND (UserId IN
+                                (SELECT UserId
+                                FROM    [User]
+                                WHERE (IsActive = 1)))))
+ORDER BY ExecutionEnd";
             this._commandCollection[0].CommandType = System.Data.CommandType.Text;
         }
         
@@ -2523,7 +2530,8 @@ SELECT ScheduleId, UserId, Date, Type, IsActive, Name FROM Schedule WHERE (Sched
             this._commandCollection[0] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ScheduleId, UserId, Date, Type, IsActive, Name\r\nFROM    Schedule\r\nWHERE (T" +
-                "ype = 3)";
+                "ype = 3) AND (IsActive = 0) AND (UserId IN\r\n                (SELECT UserId\r\n    " +
+                "            FROM    [User]\r\n                WHERE (IsActive = 1)))";
             this._commandCollection[0].CommandType = System.Data.CommandType.Text;
         }
         
