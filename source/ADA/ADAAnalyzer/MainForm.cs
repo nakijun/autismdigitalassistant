@@ -29,7 +29,7 @@ namespace ADAAnalyzer
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            CreateChart(ref this.chart1);
+            CreateChart();
             LoadDataSet();
         }
 
@@ -87,28 +87,12 @@ namespace ADAAnalyzer
                MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public void CreateChart(ref Chart chart1)
+        public void CreateChart()
         {
-            chart1.Type = ChartType.Combo;//Horizontal;
-            chart1.Width = 600;
-            chart1.Height = 350;
-            chart1.TempDirectory = "temp";
-            chart1.Debug = true;
-
-
             // This sample will demonstrate how to use calculated time axes.
-
             chart1.DefaultLegendBox.Orientation = dotnetCHARTING.WinForms.Orientation.Bottom;
 
             chart1.YAxis.Label.Text = "Minutes";
-
-            // *DYNAMIC DATA NOTE* 
-            // This sample uses random data to populate the chart. To populate 
-            // a chart with database data see the following resources:
-            // - Classic samples folder
-            // - Help File > Data Tutorials
-            // - Sample: features/DataEngine.aspx
-            //SeriesCollection mySC = getRandomData(0);
 
             // Set some properties for the main x axis.
             chart1.XAxis.TimeInterval = dotnetCHARTING.WinForms.TimeInterval.Days;
@@ -118,26 +102,6 @@ namespace ADAAnalyzer
             Axis calculatedXAxis = chart1.XAxis.Calculate("Weeks", dotnetCHARTING.WinForms.TimeInterval.Weeks);
             calculatedXAxis.Orientation = dotnetCHARTING.WinForms.Orientation.Top;
             chart1.AxisCollection.Add(calculatedXAxis);
-
-            // Calculate an axis from the x axis and add it with an advanced time interval (3 Days) intervals.
-            //TimeIntervalAdvanced tia = TimeIntervalAdvanced.Days;
-            //tia.Multiplier = 3;
-            //Axis calculatedXAxis = chart1.XAxis.Calculate("TimeIntervalAdvanced: Every 3 Days", tia);
-            //calculatedXAxis.Orientation = dotnetCHARTING.WinForms.Orientation.Top;
-            //chart1.AxisCollection.Add(calculatedXAxis);
-
-
-            //// Add the random data.
-            //chart1.SeriesCollection.Add(mySC);
-
-            //mySC = getRandomData(1);
-            //chart1.SeriesCollection.Add(mySC);
-
-            //mySC = getRandomData(2);
-            //chart1.SeriesCollection.Add(mySC);
-
-            //mySC = getRandomData(3);
-            //chart1.SeriesCollection.Add(mySC);
         }
 
         private void listBoxUsers_SelectedIndexChanged(object sender, EventArgs e)
@@ -164,22 +128,25 @@ namespace ADAAnalyzer
                 }
                 else
                 {
-                    RefreshChart();
+                    RefreshChart(false);
                 }
             }
         }
 
         private void listBoxWorkSystems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RefreshChart();
+            RefreshChart(false);
         }
 
-        SeriesCollection getSeriesCollection(DataRow[] scheduleRows)
+        SeriesCollection getSeriesCollection(DataRow[] scheduleRows, bool showAll)
         {
             SeriesCollection SC = new SeriesCollection();
 
             ADAWorkSystemDataSet.ScheduleRow firstScheduleRow = scheduleRows[0] as ADAWorkSystemDataSet.ScheduleRow;
             ADAWorkSystemDataSet.ActivityRow[] firstScheduleActivityRows = firstScheduleRow.GetActivityRows();
+
+            DateTime dateTimeMin = DateTime.MaxValue;
+            DateTime dateTimeMax = DateTime.MinValue;
 
             foreach (ADAWorkSystemDataSet.ActivityRow firstScheduleActivityRow in firstScheduleActivityRows)
             {
@@ -199,6 +166,19 @@ namespace ADAAnalyzer
                             Element e = new Element();
 
                             e.XDateTime = activityRow.ExecutionEnd.Date;
+
+                            if (showAll)
+                            {
+                                if (e.XDateTime > dateTimeMax)
+                                {
+                                    dateTimeMax = e.XDateTime;
+                                }
+
+                                if (e.XDateTime < dateTimeMin)
+                                {
+                                    dateTimeMin = e.XDateTime;
+                                }
+                            }
 
                             TimeSpan span = activityRow.ExecutionEnd.Subtract(activityRow.ExecutionStart);
                             e.YValue = span.TotalMinutes;
@@ -232,10 +212,23 @@ namespace ADAAnalyzer
                 SC.Add(s);
             }
 
+            if (showAll)
+            {
+                monthCalendarStart.DateSelected -= this.monthCalendar_DateSelected;
+                monthCalendarStart.SelectionStart = dateTimeMin.AddDays(-2);
+                monthCalendarStart.SelectionEnd = monthCalendarStart.SelectionStart;
+                monthCalendarStart.DateSelected += this.monthCalendar_DateSelected;
+
+                monthCalendarEnd.DateSelected -= this.monthCalendar_DateSelected;
+                monthCalendarEnd.SelectionEnd = dateTimeMax.AddDays(2);
+                monthCalendarEnd.SelectionEnd = monthCalendarEnd.SelectionStart;
+                monthCalendarEnd.DateSelected += this.monthCalendar_DateSelected;
+            }
+
             return SC;
         }
 
-        private void RefreshChart()
+        private void RefreshChart(bool showAll)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -248,7 +241,7 @@ namespace ADAAnalyzer
                 string filter = "UserId=" + userRow.UserId + @" AND Name='" + listBoxWorkSystems.SelectedItem + @"'";
                 DataRow[] scheduleRows = _dataSet.Schedule.Select(filter);
 
-                chart1.SeriesCollection.Add(getSeriesCollection(scheduleRows));
+                chart1.SeriesCollection.Add(getSeriesCollection(scheduleRows, showAll));
             }
 
             chart1.XAxis.ScaleRange = new ScaleRange(monthCalendarStart.SelectionStart,
@@ -262,7 +255,7 @@ namespace ADAAnalyzer
 
         private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
-            RefreshChart();
+            RefreshChart(false);
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -273,6 +266,11 @@ namespace ADAAnalyzer
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void showAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefreshChart(true);
         }
 
     }

@@ -30,7 +30,7 @@
   <ItemGroup>
     <Reference Include="dotnetCharting.WinForms, Version=4.4.2853.21899, Culture=neutral, PublicKeyToken=c3f34d622663b9f1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\Setup\DotNetCharting_WinForm\dotnetCharting.WinForms.dll</HintPath>
+      <HintPath>..\..\..\lib\dotnetCharting.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.JScript" />
     <Reference Include="Microsoft.Vsa" />
