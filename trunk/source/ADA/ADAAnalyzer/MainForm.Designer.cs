@@ -178,6 +178,7 @@ namespace ADAAnalyzer
             this.monthCalendarEnd = new System.Windows.Forms.MonthCalendar();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -190,7 +191,6 @@ namespace ADAAnalyzer
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listBoxUsers = new System.Windows.Forms.ListBox();
-            this.showAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -470,7 +470,7 @@ namespace ADAAnalyzer
         System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(132))))),
         System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198))))),
         System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(130)))), ((int)(((byte)(132)))))};
-            this.chart1.Size = new System.Drawing.Size(827, 502);
+            this.chart1.Size = new System.Drawing.Size(827, 500);
             this.chart1.SmartLabelLine = line30;
             this.chart1.SpacingPercentageNested = 4;
             this.chart1.StartDateOfYear = new System.DateTime(((long)(0)));
@@ -620,7 +620,7 @@ namespace ADAAnalyzer
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStripMain.Size = new System.Drawing.Size(833, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(833, 26);
             this.menuStripMain.TabIndex = 12;
             // 
             // systemToolStripMenuItem
@@ -631,25 +631,32 @@ namespace ADAAnalyzer
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(69, 22);
             this.systemToolStripMenuItem.Text = "System";
+            // 
+            // showAllToolStripMenuItem
+            // 
+            this.showAllToolStripMenuItem.Name = "showAllToolStripMenuItem";
+            this.showAllToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.showAllToolStripMenuItem.Text = "Show All";
+            this.showAllToolStripMenuItem.Click += new System.EventHandler(this.showAllToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.loadToolStripMenuItem.Text = "Refresh";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(125, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -660,25 +667,25 @@ namespace ADAAnalyzer
             this.simplifiedChineseToolStripMenuItem,
             this.traditionalChineseToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            this.languageToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(83, 22);
             this.languageToolStripMenuItem.Text = "Language";
             // 
             // englishToolStripMenuItem
             // 
             this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-            this.englishToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.englishToolStripMenuItem.Text = "English";
             // 
             // simplifiedChineseToolStripMenuItem
             // 
             this.simplifiedChineseToolStripMenuItem.Name = "simplifiedChineseToolStripMenuItem";
-            this.simplifiedChineseToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.simplifiedChineseToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.simplifiedChineseToolStripMenuItem.Text = "Simplified Chinese";
             // 
             // traditionalChineseToolStripMenuItem
             // 
             this.traditionalChineseToolStripMenuItem.Name = "traditionalChineseToolStripMenuItem";
-            this.traditionalChineseToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.traditionalChineseToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.traditionalChineseToolStripMenuItem.Text = "Traditional Chinese";
             // 
             // groupBox4
@@ -698,12 +705,12 @@ namespace ADAAnalyzer
             this.tableLayoutPanel1.Controls.Add(this.chart1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 26);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 207F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(833, 715);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(833, 713);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // flowLayoutPanel1
@@ -738,13 +745,6 @@ namespace ADAAnalyzer
             this.listBoxUsers.TabIndex = 1;
             this.listBoxUsers.SelectedIndexChanged += new System.EventHandler(this.listBoxUsers_SelectedIndexChanged);
             // 
-            // showAllToolStripMenuItem
-            // 
-            this.showAllToolStripMenuItem.Name = "showAllToolStripMenuItem";
-            this.showAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.showAllToolStripMenuItem.Text = "Show All";
-            this.showAllToolStripMenuItem.Click += new System.EventHandler(this.showAllToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -755,6 +755,7 @@ namespace ADAAnalyzer
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "MainForm";
             this.Text = "ADA Analyzer";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox1.ResumeLayout(false);

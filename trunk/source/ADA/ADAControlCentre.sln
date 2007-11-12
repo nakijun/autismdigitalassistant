@@ -5,6 +5,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADAControlCentre", "ADACont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenNETCF.Desktop.Communication", "Communication\OpenNETCF.Desktop.Communication.csproj", "{60FD337B-8EB5-4E20-A951-6EBB09CCE442}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADAAnalyzer", "ADAAnalyzer\ADAAnalyzer.csproj", "{B9E737C6-3368-460E-B3FD-9CD5DEDDCAB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADAWorkSystem", "ADAWorkSystem\ADAWorkSystem.csproj", "{89ECC5F5-366E-4149-BEBC-C690ECB51CC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{787B600C-9A56-41C7-A3C8-9553630FE3C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADASymbolPicker", "ADASymbolPicker\ADASymbolPicker.csproj", "{562C2915-8E47-40ED-9493-F67018BFDFE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADADataAccess", "ADADataAccess\ADADataAccess.csproj", "{904B8A0F-9D0C-453A-A135-BA622BF91103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymbolManager", "SymbolManager\SymbolManager.csproj", "{FA476A45-2BD5-413A-8004-F004C2897C64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +31,30 @@ Global
 		{60FD337B-8EB5-4E20-A951-6EBB09CCE442}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60FD337B-8EB5-4E20-A951-6EBB09CCE442}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60FD337B-8EB5-4E20-A951-6EBB09CCE442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E737C6-3368-460E-B3FD-9CD5DEDDCAB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E737C6-3368-460E-B3FD-9CD5DEDDCAB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E737C6-3368-460E-B3FD-9CD5DEDDCAB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E737C6-3368-460E-B3FD-9CD5DEDDCAB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89ECC5F5-366E-4149-BEBC-C690ECB51CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89ECC5F5-366E-4149-BEBC-C690ECB51CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89ECC5F5-366E-4149-BEBC-C690ECB51CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89ECC5F5-366E-4149-BEBC-C690ECB51CC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{787B600C-9A56-41C7-A3C8-9553630FE3C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{787B600C-9A56-41C7-A3C8-9553630FE3C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{787B600C-9A56-41C7-A3C8-9553630FE3C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{787B600C-9A56-41C7-A3C8-9553630FE3C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{562C2915-8E47-40ED-9493-F67018BFDFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{562C2915-8E47-40ED-9493-F67018BFDFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{562C2915-8E47-40ED-9493-F67018BFDFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{562C2915-8E47-40ED-9493-F67018BFDFE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{904B8A0F-9D0C-453A-A135-BA622BF91103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904B8A0F-9D0C-453A-A135-BA622BF91103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904B8A0F-9D0C-453A-A135-BA622BF91103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904B8A0F-9D0C-453A-A135-BA622BF91103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA476A45-2BD5-413A-8004-F004C2897C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA476A45-2BD5-413A-8004-F004C2897C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA476A45-2BD5-413A-8004-F004C2897C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA476A45-2BD5-413A-8004-F004C2897C64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
