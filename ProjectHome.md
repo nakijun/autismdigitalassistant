@@ -1,0 +1,1 @@
+The purpose of the ADA project is to use Personal Digital Assistants (PDAs) to assist people diagnosed with autism in learning environments and real life situations.
